@@ -1,0 +1,71 @@
+% commands used in the docs.
+\ProvidesPackage{mathemantics-documentaation-local}
+
+\RequirePackage{fontawesome5}
+
+% Load the metalogo package (which provides the \XeTeX command)
+\RequirePackage{metalogo}
+
+\addtokomafont{pageheadfoot}{\normalfont\sffamily\footnotesize}
+\RequirePackage{lineno}
+\RequirePackage{scrdate}
+\RequirePackage{lastpage}
+\RequirePackage{scrlayer-scrpage}
+\RequirePackage{hyperref}
+% Set up the appearance of author, date, title, and section headings etc.
+\renewcommand*{\sectfont}{\color{TolMutedBlue}\sffamily}
+\setkomafont{author}{\large\normalfont\sffamily}
+\setkomafont{date}{\large\normalfont\sffamily}
+\setkomafont{title}{\color{TolMutedBlue}\normalfont\sffamily\scshape}
+\addtokomafont{section}{\scshape}
+\addtokomafont{subsection}{\scshape}
+\addtokomafont{subsubsection}{\scshape\itshape}
+\pagestyle{scrheadings}
+\KOMAoptions{headsepline=true}
+\KOMAoptions{footsepline=true}
+\KOMAoptions{plainfootsepline=true}
+
+\rohead[]{Mathemantics.sty}
+\lehead[]{R. Bergmann}
+\refoot[]{\ISOToday}
+\ofoot[page~\thepage~of~\pageref*{LastPage}]{page~\thepage~of~\pageref*{LastPage}}
+
+% Define a command which displays a command inline
+\NewDocumentCommand\codeCommand{v}{\lstinline[language={[LaTeX]TeX}]{#1}}
+
+% Define a command which displays code and renders its results
+\NewDocumentCommand\codeExample{v}{%
+  \faIcon{code}\hspace{.25cm}%
+  \lstinline[language={[LaTeX]TeX}]{#1}
+  \hspace{.5cm}\faEye[regular]\hspace{.25cm}%
+  \scantokens{#1\noexpand}%
+}
+
+% Define a command which just renders the result but does not display the code
+\NewDocumentCommand\justCodeExample{v}{%
+  \faEye[regular]\hspace{.25cm}%
+  \scantokens{#1\noexpand}%
+}
+
+% Define a command which displays code and renders its results in math mode
+\NewDocumentCommand\mathCodeExample{v}{%
+  \faIcon{code}\hspace{.25cm}%
+  \lstinline[language={[LaTeX]TeX}]{#1}
+  \hspace{.5cm}\faEye[regular]\hspace{.25cm}%
+  \scantokens{$\displaystyle #1\noexpand$}%
+}
+
+\newcommand{\numapdeWarning}{{ \color{TolVibrantOrange}\faIcon{exclamation-triangle}\ }}
+
+% Define a command which displays colors
+\NewDocumentCommand\colorExample{v}{%
+  \faIcon{tint}%
+  \hspace{.25cm}
+  \makebox[.3\textwidth][l]{\textcolor{#1}{#1}}%
+  \hspace{.5cm}%
+  \colorbox{#1}{\textcolor{white}{\faIcon{fill}}\hspace{.25cm}#1\hspace{.25cm}}%
+}
+
+% Define a new description type list
+\newenvironment{commandlist}{\begin{description}[style=multiline,leftmargin=.25\textwidth,font=\texttt]}{\end{description}}
+\newenvironment{dictionarylist}{\begin{description}[style=multiline,leftmargin=.5\textwidth,font=\textbf, topsep=0pt,itemsep=-1.1ex,partopsep=1ex,parsep=1ex]}{\end{description}}
