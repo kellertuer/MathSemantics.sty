@@ -1,4 +1,9 @@
-\ProvidesPackage{mathemantics-packages}
+\ProvidesPackage{mathemantics-commons}
+
+% Packages which allow control flow
+\RequirePackage{ifthen}
+\RequirePackage{xifthen}
+\RequirePackage{ifxetex}
 
 \RequirePackage{xparse}
 \RequirePackage{xspace}
@@ -9,9 +14,7 @@
 \RequirePackage{mathtools}
 \RequirePackage{stmaryrd}
 \RequirePackage{enumitem}
-
-% Source code typesetting related packages
-\RequirePackage{listings}
+\RequirePackage{calc}
 
 % Number and unit typesetting related packages
 \RequirePackage{siunitx}

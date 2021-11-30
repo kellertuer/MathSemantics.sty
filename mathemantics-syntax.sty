@@ -2,7 +2,6 @@
 
 % Resolve the dependencies of this package
 \RequirePackage{mathemantics-commons}
-\RequirePackage{calc}
 
 % Define commands for bold upper-case letters in math mode
 \newcommand{\bA}{{\boldsymbol{A}}}
@@ -328,123 +327,13 @@
 \newcommand{\vOmega}{{\vec{\Omega}}}
 
 % Define commands for some blackboard characters in math mode, mainly used for sets
-\let\C\undefined \newcommand{\C}{\mathbb{C}}
-\newcommand{\K}{\mathbb{K}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\let\S\undefined \newcommand{\S}{\mathbb{S}}
-\newcommand{\Z}{\mathbb{Z}}
-
-% Define some English abbreviations
-\let\aa\undefined \newcommand{\aa}{a.a.\xspace}
-\newcommand{\ale}{a.e.\xspace}
-\let\cf\undefined \newcommand{\cf}{cf.\xspace}
-\newcommand{\eg}{e.\,g.\xspace}
-\newcommand{\Eg}{E.\,g.\xspace}
-\let\ie\undefined \newcommand{\ie}{i.\,e.\xspace}
-\newcommand{\Ie}{I.\,e.\xspace}
-\newcommand{\iid}{i.\,i.\,d.\xspace}
-\let\st\undefined \newcommand{\st}{s.\,t.\xspace}  % WileyNJD-v2.cls (loads soul.sty)
-\newcommand{\wolog}{w.l.o.g.\xspace} % \wlog is a LaTeX core command which writes to the .log file
-\newcommand{\wrt}{w.r.t.\xspace}
-
-% Define some German abbreviations
-\newcommand{\bspw}{bspw.\xspace}
-\newcommand{\bzgl}{bzgl.\xspace}
-\newcommand{\bzw}{bzw.\xspace}
-\newcommand{\dah}{d.\,h.\xspace}
-\newcommand{\Dah}{D.\,h.\xspace}
-\newcommand{\etc}{etc.\xspace}
-\newcommand{\evtl}{evtl.\xspace}
-\newcommand{\Evtl}{Evtl.\xspace}
-\newcommand{\fue}{f.\,ü.\xspace}
-\newcommand{\fs}{f.\,s.\xspace}
-\newcommand{\iA}{i.\,A.\xspace}
-\newcommand{\IA}{I.\,A.\xspace}
-\newcommand{\idR}{i.\,d.\,R.\xspace}
-\newcommand{\IdR}{I.\,d.\,R.\xspace}
-\newcommand{\iW}{i.\,W.\xspace}
-\newcommand{\IW}{I.\,W.\xspace}
-\newcommand{\mE}{m.\,E.\xspace}
-\newcommand{\oBdA}{o.\,B.\,d.\,A.\xspace}
-\newcommand{\OBdA}{O.\,B.\,d.\,A.\xspace}
-\let\og\undefined \newcommand{\og}{o.\,g.\xspace}  % cedram.cls
-\newcommand{\oae}{o.\,ä.\xspace}
-\newcommand{\pa}{p.\,a.\xspace}
-\newcommand{\spd}{s.\,p.\,d.\xspace}
-\let\so\undefined \newcommand{\so}{s.\,t.\xspace}  % WileyNJD-v2.cls (loads soul.sty)
-\newcommand{\ua}{u.\,a.\xspace}
-\newcommand{\ug}{u.\,g.\xspace}
-\newcommand{\usw}{usw.\xspace}
-\newcommand{\Ua}{U.\,a.\xspace}
-\newcommand{\uU}{u.\,U.\xspace}
-\newcommand{\UnU}{U.\,U.\xspace}
-\newcommand{\vgl}{vgl.\xspace}
-\newcommand{\zB}{z.\,B.\xspace}
-\newcommand{\ZB}{Z.\,B.\xspace}
-\newcommand{\zHd}{z.\,Hd.\xspace}
-
-% Define a default markdown for named (mostly software related)
-% packages, and some commands for often-used packages as well
-\newcommand{\namemd}[1]{\textsc{#1}\xspace}
-\newcommand{\adimat}{\namemd{ADiMat}}
-\newcommand{\ampl}{\namemd{AMPL}}
-\newcommand{\BibTeX}{\namemd{Bib\TeX}}
-\newcommand{\BibLaTeX}{\namemd{Bib\LaTeX}}
-\newcommand{\cg}{\namemd{CG}}
-\newcommand{\cpp}{\namemd{C++}}
-\newcommand{\cppmat}{\namemd{cppmat}}
-\newcommand{\dolfin}{\namemd{Dolfin}}
-\newcommand{\dolfinplot}{\namemd{Dolfin-Plot}}
-\newcommand{\dolfinadjoint}{\namemd{Dolfin-Adjoint}}
-\newcommand{\doxygen}{\namemd{Doxygen}}
-\newcommand{\femorph}{\namemd{FEMorph}}
-\newcommand{\fenics}{\namemd{FEniCS}}
-\newcommand{\ffc}{\namemd{FFC}}
-\newcommand{\fmg}{\namemd{FMG}}
-\newcommand{\fortran}{\namemd{Fortran}}
-\newcommand{\gitlab}{\namemd{GitLab}}
-\newcommand{\gmres}{\namemd{Gmres}}
-\newcommand{\gmsh}{\namemd{Gmsh}}
-\newcommand{\ipopt}{\namemd{Ipopt}}
-\newcommand{\libsvm}{\namemd{LIBSVM}}
-\newcommand{\liblinear}{\namemd{LIBLINEAR}}
-\newcommand{\macmpec}{\namemd{MacMPEC}}
-\newcommand{\manifoldsjl}{\namemd{Manifolds.jl}}
-\newcommand{\manopt}{\namemd{Manopt}}
-\newcommand{\manoptjl}{\namemd{Manopt.jl}}
-\newcommand{\mathematica}{\namemd{Mathematica}}
-\newcommand{\matlab}{\namemd{Matlab}}
-\newcommand{\maple}{\namemd{Maple}}
-\newcommand{\maxima}{\namemd{Maxima}}
-\newcommand{\meshio}{\namemd{meshio}}
-\newcommand{\metis}{\namemd{Metis}}
-\newcommand{\minres}{\namemd{Minres}}
-\newcommand{\mshr}{\namemd{mshr}}
-\newcommand{\mvirt}{\namemd{MVIRT}}
-\newcommand{\numapde}{\namemd{numapde}}
-\newcommand{\numpy}{\namemd{NumPy}}
-\newcommand{\paraview}{\namemd{Paraview}}
-\newcommand{\pdflatex}{\namemd{PDF\LaTeX}}
-\newcommand{\perl}{\namemd{Perl}}
-\newcommand{\petsc}{\namemd{PETSc}}
-\newcommand{\pymat}{\namemd{pymat}}
-\newcommand{\python}{\namemd{Python}}
-\newcommand{\scikit}{\namemd{SciKit}}
-\newcommand{\scikitlearn}{\namemd{SciKit-learn}}
-\newcommand{\scipy}{\namemd{SciPy}}
-\newcommand{\sphinx}{\namemd{Sphinx}}
-\newcommand{\subgmres}{\namemd{SubGmres}}
-\newcommand{\subminres}{\namemd{SubMinres}}
-\newcommand{\superlu}{\namemd{SuperLU}}
-\newcommand{\svmlight}{\namemd{SVM${}^\text{light}$}}
-\newcommand{\TikZ}{Ti\textit{k}Z\xspace}
-\newcommand{\tritetmesh}{\namemd{TriTetMesh}}
-\newcommand{\ufl}{\namemd{UFL}}
-\newcommand{\uqlab}{\namemd{UQLab}}
-\newcommand{\viper}{\namemd{Viper}}
-\newcommand{\xml}{\namemd{XML}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbK}{\mathbb{K}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbS}{\mathbb{S}}
+\newcommand{\bbZ}{\mathbb{Z}}
 
 % Define \enclose command
 % \enclose[a]{b}{c}{d} encloses content (c) in brackets (b,d) where the optional parameter
@@ -504,12 +393,3 @@
 \def\my@mathpalette#1#2#3#4{\mathchoice{#1\displaystyle{#2}{#3}{#4}}{#1\textstyle{#2}{#3}{#4}}{#1\scriptstyle{#2}{#3}{#4}}{#1\scriptscriptstyle{#2}{#3}{#4}}}
 \def\mrepinternal#1#2#3#4{\makebox[\widthof{$#1#4$}][#2]{$#1\vphantom{#4}{#3}$}}
 \newcommand{\mrep}[3][l]{\ifmmode\my@mathpalette\mrepinternal{#1}{#2}{#3}\else\makebox[\widthof{#3}][#1]{\vphantom{#3}#2}\fi}
-
-% Simplify the use of German and English quotation marks
-\newcommand{\gq}[1]{\glq#1\grq}
-\newcommand{\gqq}[1]{\glqq#1\grqq}
-\newcommand{\eq}[1]{`#1'}
-\newcommand{\eqq}[1]{``#1''}
-
-% text markup
-\newcommand{\file}[1]{\nolinkurl{#1}}

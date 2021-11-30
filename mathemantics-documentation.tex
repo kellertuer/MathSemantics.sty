@@ -17,17 +17,32 @@
 \begin{document}
     \maketitle
     \section{Introduction}
-    The package is split into several layers, which can be loaded / used independently.
+    This package aims to provide some commands for ease of use in mathematics.
+    The aim is to first ease the use of some often used letters and low-level formats like
+    bold face letters \mathCodeExample{\bbR}, but also to provide high level commands that
+    make typing mathematics easier, for example using \mathCodeExample{\abs{\frac{1}{2}}} and  \mathCodeExample{\abs[Big]{\frac{1}{2}}}
+
+    The parts of this packages (per section) are stored in separate files and can be loaded separately.
+    If one part depends on another package, this is mentioned in the beginning of the section.
+
+    \section{Package Options}
+        \label{sec:package-options}
+        \begin{commandlist}
+            \item[shortbb] use shorter notations for the bold math fonts, \codeCommand{\R} for \codeCommand{\bbR}. (planned)
+        \end{commandlist}
 
     \section{Required Packages}
+        \label{sec:required-packages}
 
-    \section{Syntax: \texorpdfstring{\file{mathemantics-syntax.sty}}{numapde-syntax.sty}}\label{sec:syntax}
+    \section{Syntax}
+        \label{sec:syntax}
 
-    The \file{numapde-syntax.sty} package provides mainly symbols and short commands, which can be used in semantic definitions for ease of notation.
+    The \file{mathemantics-syntax.sty} package provides mainly symbols and short commands, which can be used in semantic definitions for ease of notation.
     They usually are rather simple commands without too many parameters.
 
 
-    \subsection{Letters}\label{subsec:letters}
+    \subsection{Letters}
+        \label{subsec:letters}
 
     \begin{commandlist}
         \item[ba\ldots bz] lower-case \textbf{b}old-face letters \mathCodeExample{\br, \bf}
@@ -45,8 +60,607 @@
         \item[vAlpha\ldots vOmega] upper-case Greek letters with a \textbf{v}ector accent \mathCodeExample{\vGamma,\vDelta}
         \item[vnull] vector zero \mathCodeExample{\vnull}
         \item[vone] vector one \mathCodeExample{\vone}
-        \item[C, K, N, Q, R, S, Z] mathematical sets \par\mathCodeExample{\C,\K,\N,\Q,\R,\S,\Z}
+        \item[bbC, bbK, bbN, bbQ, bbR, bbS, bbZ] mathematical sets \par\mathCodeExample{\bbC,\bbK,\bbN,\bbQ,\bbR,\bbS,\bbZ}
     \end{commandlist}
 
+    \subsection{Syntax Helpers}\label{subsec:syntax_helpers}
+
+    \begin{commandlist}
+        \item[enclspacing] provides spacing after the opening and before the closing delimiters for \codeCommand{\enclose}.
+            This is by default set to be empty.
+        \item[enclose] is a command which encloses some content in scaled delimiters.
+            It is meant as a helper to facilitate the definition of other commands.
+            Its syntax is \codeCommand{\enclose[#1]{#2}{#3}{#4}}.
+            The first (optional) argument is used to scale the delimiters to the standard amsmath sizes.%
+            \footnote{\mintinline{LaTeX}|big|, \mintinline{LaTeX}|Big|, \mintinline{LaTeX}|bigg|, \mintinline{LaTeX}|Bigg| or \mintinline{LaTeX}|auto|, which uses \mintinline{LaTeX}|left| and \mintinline{LaTeX}|right| as well as \mintinline{LaTeX}|none| to easily deactivate brackets.\label{footnote:amsmath_sizes}}
+            The second and fourth arguments specify the opening and closing delimiters, respectively.
+            The third argument is the content to be enclosed.
+            \par\mathCodeExample{\enclose{[}{\dfrac{1}{2}}{]}} % chktex 9
+            \par\mathCodeExample{\enclose[Big][{\dfrac{1}{2}}]} % chktex 9
+            \par\mathCodeExample{\enclose[auto]{[}{\dfrac{1}{2}}{]}} % chktex 9
+            \par\mathCodeExample{\enclose[none]{[}{\dfrac{1}{2}}{]}} % chktex 9
+
+            \textbf{Note 1.} \mintinline{LaTeX}|none| is merely meant for testing when having arguments
+            in brackets whether it is useful to omit them. You can also deactivate the absolute value
+            vertical lines this way, so \emph{use this option with care}.
+
+            \textbf{Note 2.} This command should normally be used only in the definition of other commands.
+            For instance, \codeCommand{\abs} is using it internally. See \codeCommand{\paren} for the nicer command to use
+        \item[enclspacingSet] provides spacing before and after the center delimiter \codeCommand{\encloseSet}.
+            This is by default set to \codeCommand{\,}.
+        \item[encloseSet] is a command which encloses some content in scaled delimiters.
+            It is meant as a helper to facilitate the definition of other commands.
+            Its syntax is \codeCommand{\encloseSet#1]{#2}{#3}{#4}{#5}{#6}}.
+            The first (optional) argument is used to scale the delimiters including the center one to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second and sixth arguments specify the opening and closing delimiters, respectively.
+        The fourth argument specifies the center delimiter and
+            The third and fifth argument are the content to be enclosed.
+            \par\mathCodeExample{\encloseSet[big]{\{}{x\in\bbR}{|}{x>5}{\}}} % chktex 9
+            \par\mathCodeExample{\encloseSet[auto]{\{}{x\in\bbR}{|}{x>\dfrac{1}{2}}{\}}} % chktex 9
+            \\
+            \textbf{Note.} This command should normally be used only in the definition of other commands.
+            For instance, \codeCommand{\setDef} is using it internally.
+        \item[paren] is an alternative to \codeCommand{\enclose}, with a different ordering of arguments.
+            Its syntax is \codeCommand{\paren[#1]{#2}{#3}{#4}}, which is simply mapped to \codeCommand{\enclose[#1]{#2}{#4}{#3}}.
+            \par\mathCodeExample{\paren[Big]{[}{]}{\dfrac{1}{2}}}
+            \par\mathCodeExample{\paren[Big][]{\dfrac{1}{2}}}
+            \par\mathCodeExample{\paren[auto]{[}{]}{\dfrac{1}{2}}}
+    \end{commandlist}
+
+    \subsection{Spacing Helpers}\label{subsec:spacing_helpers}
+
+    \begin{commandlist}
+        \item[clap] complements the standard \LaTeX\ commands \codeCommand{\llap} and \codeCommand{\rlap}.
+            These commands horizontally smash their arguments.
+            \par\codeExample{Let us \llap{smash} something.}
+            \par\codeExample{Let us \clap{smash} something.}
+            \par\codeExample{Let us \rlap{smash} something.}
+        \item[mathllap] corresponds to \codeCommand{\llap} in math mode.
+            \par\mathCodeExample{\sum_{\mathllap{1\le i\le j\le n}} X_{ij}}
+        \item[mathclap] corresponds to \codeCommand{\clap} in math mode.
+            \par\mathCodeExample{\sum_{\mathclap{1\le i\le j\le n}} X_{ij}}
+        \item[mathrlap] corresponds to \codeCommand{\rlap} in math mode.
+            \par\mathCodeExample{\sum_{\mathrlap{1\le i\le j\le n}} X_{ij}}
+        \item[mrep] stands for \emph{math replace} and it typesets an argument while reserving the space for another.
+            Its syntax is \codeCommand{\mrep[#1]{#2}{#3}}
+            The first (optional) argument is one of \codeCommand{{l,c,r}} and it is used to define the alignment.
+            \codeCommand{c} is the default.
+            \par\mathCodeExample{\mrep[l]{1}{-1}-1}
+            \par\mathCodeExample{\mrep[c]{1}{-1}-1}
+            \par\mathCodeExample{\mrep[r]{1}{-1}-1}
+    \end{commandlist}
+
+    \section{Abbreviations}
+
+        \begin{commandlist}
+            \item[aa] almost all \codeExample{\aa}
+            \item[ale] almost everwhere \codeExample{\ale}\\
+            \item[ampl] \justCodeExample{\ampl}
+            \item[bspw] beispielsweise (for example) \codeExample{\bspw}
+            \item[bzgl] bezüglich (with regard to) \codeExample{\bzgl}
+            \item[bzw] beziehungsweise (respectively) \codeExample{\bzw}
+            \item[cg] \justCodeExample{\cg}
+            \item[cpp] \justCodeExample{\cpp}
+            \item[cppmat] \justCodeExample{\cppmat}
+            \item[Dah] Das heißt (That is, beginning of phrase) \codeExample{\Dah}
+            \item[dah] das heißt (that is) \codeExample{\dah}
+            \item[eg] exempli gratia (for example) \codeExample{\eg}
+            \item[etc] et cetera (and so on) \codeExample{\etc}
+            \item[evtl] eventuell (possibly) \codeExample{\evtl}
+            \item[fs] fast sicher \codeExample{\fs}
+            \item[fue] fast überall \codeExample{\fue}
+            \item[IA] Im Allgemeinen (beginning of phrase) \codeExample{\IA}
+            \item[iA] im Allgemeinen \codeExample{\iA}
+            \item[idR] in der Regel \codeExample{\idR}
+            \item[IdR] In der Regel (beginning of phrase) \codeExample{\IdR}
+            \item[ie] id est (id est) \codeExample{\ie}
+            \item[iid] independent and identically distributed \codeExample{\iid}
+            \item[iW] im Wesentlichen \codeExample{\iW}
+            \item[IW] Im Wesentlichen (beginning of phrase) \codeExample{\IW}
+            \item[mE] meines Erachtens \codeExample{\mE}
+            \item[oBdA] ohne Beschränkung der Allgemeinheit \codeExample{\oBdA}
+            \item[OBdA] ohne Beschränkung der Allgemeinheit (beginning of phrase) \par\codeExample{\OBdA}
+            \item[og] oben genannt \codeExample{\og}
+            \item[oae] oder ähnliche \codeExample{\oae}
+            \item[spd] symmetric positive definite \codeExample{\spd}
+            \item[so] siehe oben \codeExample{\so}
+            \item[st] such that or subject to \codeExample{\st}
+            \item[ua] unter anderem \codeExample{\ua}
+            \item[Ua] Unter anderem (beginning of phrase) \codeExample{\Ua}
+            \item[ug] unten genannt \codeExample{\ug}
+            \item[usw] und so weiter (and so on) \justCodeExample{\usw}
+            \item[uU] unter Umständen \codeExample{\uU}
+            \item[UnU] Unter Umständen (beginning of phrase) \codeExample{\UnU}
+            \item[vgl] vergleiche (compare) \codeExample{\vgl}
+            \item[wrt] with respect to \codeExample{\wrt}
+            \item[zB] zum Beisiel \codeExample{\zB}
+            \item[ZB] Zum Beispiel (beginning of phrase) \codeExample{\ZB}
+            \item[zHd] zu Händen \codeExample{\zHd}
+        \end{commandlist}
+
+    \section{Names}
+        \begin{commandlist}
+            \item[adimat] \justCodeExample{\adimat}
+            \item[BibTeX] \justCodeExample{\BibTeX}
+            \item[BibLaTeX] \justCodeExample{\BibLaTeX}
+            \item[dolfin] \justCodeExample{\dolfin}
+            \item[dolfinplot] \justCodeExample{\dolfinplot}
+            \item[dolfinadjoint] \justCodeExample{\dolfinadjoint}
+            \item[doxygen] \justCodeExample{\doxygen}
+            \item[femorph] \justCodeExample{\femorph}
+            \item[fenics] \justCodeExample{\fenics}
+            \item[ffc] \justCodeExample{\ffc}
+            \item[fmg] \justCodeExample{\fmg}
+            \item[fortran] \justCodeExample{\fortran}
+            \item[gitlab] \justCodeExample{\gitlab}
+            \item[gmres] \justCodeExample{\gmres}
+            \item[gmsh] \justCodeExample{\gmsh}
+            \item[ipopt] \justCodeExample{\ipopt}
+            \item[libsvm] \justCodeExample{\libsvm}
+            \item[liblinear] \justCodeExample{\liblinear}
+            \item[macmpec] \justCodeExample{\macmpec}
+            \item[manifoldsjl] \justCodeExample{\manifoldsjl}
+            \item[manopt] \justCodeExample{\manopt}
+            \item[manoptjl] \justCodeExample{\manoptjl}
+            \item[mathematica] \justCodeExample{\mathematica}
+            \item[matlab] \justCodeExample{\matlab}
+            \item[maple] \justCodeExample{\maple}
+            \item[maxima] \justCodeExample{\maxima}
+            \item[metis] \justCodeExample{\metis}
+            \item[minres] \justCodeExample{\minres}
+            \item[mshr] \justCodeExample{\mshr}
+            \item[mvirt] \justCodeExample{\mvirt}
+            \item[numpy] \justCodeExample{\numpy}
+            \item[paraview] \justCodeExample{\paraview}
+            \item[pdflatex] \justCodeExample{\pdflatex}
+            \item[perl] \justCodeExample{\perl}
+            \item[petsc] \justCodeExample{\petsc}
+            \item[pymat] \justCodeExample{\pymat}
+            \item[python] \justCodeExample{\python}
+            \item[scikit] \justCodeExample{\scikit}
+            \item[scikitlearn] \justCodeExample{\scikitlearn}
+            \item[scipy] \justCodeExample{\scipy}
+            \item[sphinx] \justCodeExample{\sphinx}
+            \item[subgmres] \justCodeExample{\subgmres}
+            \item[subminres] \justCodeExample{\subminres}
+            \item[superlu] \justCodeExample{\superlu}
+            \item[svmlight] \justCodeExample{\svmlight}
+            \item[tritetmesh] \justCodeExample{\tritetmesh}
+            \item[ufl] \justCodeExample{\ufl}
+            \item[uqlab] \justCodeExample{\uqlab}
+            \item[viper] \justCodeExample{\viper}
+            \item[xml] \justCodeExample{\xml}
+        \end{commandlist}
+
     \section{Semantic Commands}
+    Build upon Syntax from \cref{sec:syntax} this part provides semantical mathematical commands.
+
+    \begin{commandlist}
+        \item[abs] absolute value.
+            Its syntax is \codeCommand{\abs[#1]{#2}}.
+            The first (optional) argument is used to scale the deliminters enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the argument.
+            \par\mathCodeExample{\abs{a}}
+            \par\mathCodeExample{\abs[Big]{\dfrac{1}{2}}}
+            \par\mathCodeExample{\abs[auto]{\dfrac{1}{2}}}
+        \item[aff] affine hull \mathCodeExample{\aff}
+        \item[arcosh] area hyperbolic cosine \mathCodeExample{\arcosh}
+        \item[arcoth] area hyperbolic cotangens \mathCodeExample{\arcoth}
+        \item[argmax] maximizer of a function
+            \mathCodeExample{\argmax_{x \in \bbR} f(x)} % chktex 6
+        \item[Argmax] set of maximizers of a function
+            \mathCodeExample{\Argmax_{x \in \bbR} f(x)} % chktex 6
+        \item[argmin] minimizer of a function
+            \mathCodeExample{\argmin_{x \in \bbR} f(x)} % chktex 6
+        \item[Argmin] set of minimizers of a function
+            \mathCodeExample{\Argmin_{x \in \bbR} f(x)} % chktex 6
+        \item[arsinh] area hyperbolic cotangens \mathCodeExample{\arsinh}
+        \item[artanh] area hyperbolic tangens \mathCodeExample{\artanh}
+        \item[bdiv] bold (meaning: vector) divergence of a matrix-valued function \mathCodeExample{\bdiv}
+        \item[ceil] integer larger or equal to input.
+            Its syntax is \codeCommand{\ceil[#1]{#2}}.
+            The first (optional) argument is used to scale the delimiters enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the argument.
+            \par\mathCodeExample{\ceil{a}}
+            \par\mathCodeExample{\ceil[Big]{\dfrac{1}{2}}}
+        \item[clconv] closure of the convex hull of a set \mathCodeExample{\clconv M}
+        \item[closure] closure of a set \mathCodeExample{\closure M}
+        \item[cofac] cofactor matrix \mathCodeExample{\cofac(A)}
+        \item[compactly] compact embedding of topological spaces \mathCodeExample{\compactly}
+        \item[cone] conic hull \mathCodeExample{\cone}
+        \item[conv] convex hull of a set \mathCodeExample{\conv M}
+        \item[corresponds] binary operator for correspondence \mathCodeExample{A\corresponds B}
+        \item[cov] covariance \mathCodeExample{\cov}
+        \item[curl] the curl operator \mathCodeExample{\curl}
+        \item[d] integral symbol with prepended space, as in
+            \par\mathCodeExample{\int_\bbR \exp(-x^2) \d x}
+        \item[dev] deviator of a matrix \mathCodeExample{\dev A}
+        \item[diag] diagonal matrix composed of entries in a vector, or diagonal of a matrix
+            \par\mathCodeExample{\diag(a)}
+            \par\mathCodeExample{\diag(A)}
+        \item[diam] diameter \mathCodeExample{\diam(M)}
+        \item[distOp] the mathematical operator denoting the distance
+            \par\mathCodeExample{\distOp}
+        \item[dist] distance from a point to a set.
+            Its syntax is \codeCommand{\dist[#1]{#2}{#3}} or \codeCommand{\dist[#1]{#2}}.
+            The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the set.
+            The third argument denotes the point; it can be omitted.
+            The command \codeCommand{\distOp} is used to typeset the operator.
+            \par\mathCodeExample{\dist[Big]{\cC}{\dfrac{x}{2}}}
+            \par\mathCodeExample{\dist{\cC}}
+            \par\mathCodeExample{\dist}
+        \item[div] divergence \mathCodeExample{\div}
+        \item[Div] (row-wise) divergence \mathCodeExample{\Div}
+        \item[dom] domain \mathCodeExample{\dom}
+        \item[dotcup] distinct union \mathCodeExample{\dotcup}
+        \item[dprod] double contraction of matrices $A \dprod B = \sum_{i,j} A_{ij} B_{ij} = \trace(A^\transp B)$
+            \par\mathCodeExample{A \dprod B}
+        \item[dual] duality pairing.
+            Its syntax is \codeCommand{\dual[#1]{#2}{#3}}.
+            The first (optional) argument is used to scale the delimiters enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the first factor.
+            The third argument denotes the second factor.
+            \par\mathCodeExample{\dual{x^*}{x}}
+            \par\mathCodeExample{\dual[Big]{x^*}{\dfrac{1}{2}}}
+        \item[e] Euler's number \mathCodeExample{\e}
+        \item[embed] embedding of topological spaces \mathCodeExample{\embed}
+        \item[embeds] synonym of \codeCommand{\embed} \mathCodeExample{\embeds}
+        \item[epi] epigraph \mathCodeExample{\epi}
+        \item[eR] extended real line \mathCodeExample{\eR = \bbR \cup \{\pm \infty\}}
+        \item[essinf] essential infimum \par \mathCodeExample{\displaystyle\essinf_{x \in \bbR} f(x)} % chktex 1 chktex 6
+        \item[esssup] essential supremum \par \mathCodeExample{\displaystyle\esssup_{x \in \bbR} f(x)} % chktex1 chktex 6
+        \item[file] typesets a file name (using \codeCommand{nolinkurl})
+            \par\codeExample{\file{test.txt}}
+        \item[floor] integer less or equal to input.
+            Its syntax is \codeCommand{\floor[#1]{#2}}.
+            The first (optional) argument is used to scale the delimiters enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the argument.
+            \par\mathCodeExample{\floor{a}}
+            \par\mathCodeExample{\floor[Big]{\dfrac{1}{2}}}
+        \item[grad] gradient (of a function) \mathCodeExample{\grad F} %chktex 1
+        \item[Graph] graph of a function \mathCodeExample{\Graph}
+        \item[id] identity operator \mathCodeExample{\id}
+        \item[image] image of a function \mathCodeExample{\image}
+        \item[inj] injedctivity (radius) \mathCodeExample{\inj}
+        \item[inner] inner product.
+            Its syntax is \codeCommand{\inner[#1]{#2}{#3}}.
+            The first (optional) argument is used to scale the parentheses enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the first factor.
+            The third argument denotes the second factor.
+            \par\mathCodeExample{\inner{a}{b}}
+            \par\mathCodeExample{\inner[Big]{a}{\dfrac{b}{2}}}
+        \item[interior] \mathCodeExample{\interior}
+        \item[jump] jump of a quantity, \eg, across a finite element facet.
+            Its syntax is \codeCommand{\jump[#1]{#2}}.
+            The first (optional) argument is used to scale the delimiters enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the argument.
+            \par\mathCodeExample{\jump{a}}
+            \par\mathCodeExample{\jump[Big]{\dfrac{1}{2}}}
+        \item[laplace] the Laplace operator \mathCodeExample{\laplace u} %chktex 1
+        \item[lin] linear hull of a set of vectors \mathCodeExample{\lin\{v_1,v_2\}}
+        \item[norm] norm of a vector.
+            Its syntax is \codeCommand{\norm[#1]{#2}}.
+            The first (optional) argument is used to scale the delimiters enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the argument.
+            \par\mathCodeExample{\norm{a}}
+            \par\mathCodeExample{\norm[Big]{\dfrac{c}{2}}}
+            \par\mathCodeExample{\norm[auto]{\dfrac{c}{2}}}
+            %
+        \item[projOp] the mathematical operator denoting the projection \mathCodeExample{\projOp}
+            \par\mathCodeExample{\projOp}
+        \item[proj] projection onto a set.
+            Its syntax is \codeCommand{\proj[#1]{#2}(#3)} or \codeCommand{\proj[#1]{#2}}.
+            The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the set and can also be left out.
+            The third argument denotes the point; it can be omitted.
+            The command \codeCommand{\projOp} is used to typeset the operator.
+            \par\mathCodeExample{\proj}
+            \par\mathCodeExample{\proj(x)}
+            \par\mathCodeExample{\proj{\cC}}
+            \par\mathCodeExample{\proj{\cC}(x)}
+            \par\mathCodeExample{\proj[Big](\dfrac{x}{2})}
+            \par\mathCodeExample{\proj[Big]{\cC}(\dfrac{x}{2})}
+        \item[proxOp] the mathematical operator denoting the proximal map
+            \par\mathCodeExample{\proxOp}
+        \item[prox] the proximal operator of a function.
+            Its syntax is \codeCommand{\prox[#1]{#2}(#3)} or \codeCommand{\prox[#1]{#2}}.
+            The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the set.
+            The third argument denotes the point; it can be omitted.
+            The command \codeCommand{\proxOp} is used to typeset the operator.
+            \par\mathCodeExample{\prox}
+            \par\mathCodeExample{\prox{\lambda F}} % chktex 1
+            \par\mathCodeExample{\prox{\lambda F}(x)} % chktex 1
+            \par\mathCodeExample{\prox[auto]{\lambda F}(\dfrac{x}{2})} %chktex 1
+        \item[rank] rank (of a matrix) \mathCodeExample{\rank}
+        \item[range] range of some operator \mathCodeExample{\range}
+        \item[restr] restriction/evaluation.
+            Its syntax is \codeCommand{\restr[#1]{#2}{#3}}.
+            The first (optional) argument is used to scale the deliminters enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the argument to be restricted/evaluated.
+            The third argument denotes the restriction set/evaluation point.
+            \par\mathCodeExample{\restr[auto]{\frac{\d x}{\d t}(f \circ \gamma)(t)}{t=0}}
+        \item[ri] relative inerior \mathCodeExample{\ri}
+
+
+      \item[setDef] define a set, where \codeCommand{\setMid} serves as the center divider.
+            Its syntax is \codeCommand{\setDef[#1]{#2}{#3}}.
+            The first (optional) argument is used to scale the parantheses enclosing the argument and the center divider to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The second argument denotes the left part of the definition, naming the potential elements of the set being defined.
+            The third argument denotes the condition to include the elements in the set.
+            \par\mathCodeExample{\setDef{x\in\bbR}{x>5}}\\
+            \par\mathCodeExample{\setDef[Big]{x\in\bbR}{x>\dfrac{1}{2}}}
+        \item[setMid] divider within \codeCommand{\setDef} (set definitions).
+            This defaults to \codeCommand{|}.
+            % To produce a colon as divider, use \codeCommand{\renewcommand{\setMid}{.\colon}}.
+        \item[sgn] sign \mathCodeExample{\sgn}
+        \item[Sgn] sign (set valued) \mathCodeExample{\Sgn}
+        \item[supp] support (of a function) \mathCodeExample{\supp F} % chktex 1
+        \item[sym] symmetric part (of a matrix) \mathCodeExample{\sym A} % chktex 1
+        \item[trace] trace (of a matrix) \mathCodeExample{\trace A}  % chktex 1
+        \item[transp] transpose of a vector or matrix.
+            \par\mathCodeExample{A^\transp}
+        \item[transposeSymbol] symbol to use for the transpose
+            \par\mathCodeExample{\transposeSymbol}
+        \item[var] variance \mathCodeExample{\var}
+        \item[weakly] weak convergence of a sequence \mathCodeExample{\weakly}
+        \item[weaklystar] weak star convergence of a sequence \mathCodeExample{\weaklystar}
+    \end{commandlist}
+
+    \section{Additional Semantics by Topic}\label{sec:semantics-by-topic}
+
+While semantic commands might be suitable for all mathematical topics, the following subsections collect commands which are most useful in one particular mathematical area and hence might clutter the general semantic file.
+Any semantic topic files should always build on \file{numapde-semantic.sty}.
+
+
+\subsection{Manifolds: \texorpdfstring{\file{numapde-manifolds.sty}}{numapde-manifolds.sty}}\label{subsec:manifolds}
+
+The semantic file \file{numapde-manifolds.sty} collects definitions and notations for Riemannian manifolds.
+\begin{commandlist}
+	\item[bitangent] the bitangent space.
+		Its syntax is \codeCommand{\bitangent{#1}[#2]}.
+		The first argument denotes the base point.
+		The second (optional) argument denotes the manifold, which defaults to $\cM$.
+		\par\mathCodeExample{\bitangentSpace{p}}
+		\par\mathCodeExample{\bitangentSpace{q}[\cN]}
+	\item[bitangentSpaceSymbol] the symbol used within \codeCommand{\bitangentSpace}.
+		\par\mathCodeExample{\bitangentSpaceSymbol}
+	\item[cotangent] the cotangent space.
+		Its syntax is \codeCommand{\cotangentSpace{#1}[#2]}.
+		The first argument denotes the base point.
+		The second (optional) argument denotes the manifold, which defaults to $\cM$.
+		\par\mathCodeExample{\cotangentSpace{p}}
+		\par\mathCodeExample{\cotangentSpace{q}[\cN]}
+	\item[cotangentBundle] the cotangent bundle.
+		Its syntax is \codeCommand{\cotangentBundle[#1]}.
+		The (optional) argument denotes the manifold, which defaults to $\cM$.
+		\par\mathCodeExample{\cotangentBundle}
+		\par\mathCodeExample{\cotangentBundle[\cN]}
+	\item[cotangentSpaceSymbol] the symbol used within \codeCommand{\cotangent}.
+		\par\mathCodeExample{\cotangentSpaceSymbol}
+	\item[covariantDerivative] is the covariant derivative.
+		Its syntax is \codeCommand{\covariantDerivative{#1}[#2]}.
+		The first argument is the vector (or vector field) determining the direction of differentiation.
+		The second (optional) argument denotes the tensor field being differentiated.
+		\par\mathCodeExample{\covariantDerivative{X}{Y}}
+	\item[covariantDerivativeSymbol]\hspace{4em}the symbol used for the covariant derivative \codeCommand{\covariantDerivative}.
+		\par\mathCodeExample{\covariantDerivativeSymbol}
+	\item[exponential] the exponential map.
+		Its syntax is \codeCommand{\exponential[#1]{#2}(#3)}.
+		The first argument can be used to scale the third.
+		The second argument denotes the base point and is mandatory.
+		The third argument denotes the tangent vector, which is optional, but if provided, the argument is put in brackets.
+		The first following example illustrates the case, where no brackets are put.
+		Note that the space is mandatory.
+		\par\mathCodeExample{\exponential{p}X}
+		\par\mathCodeExample{\exponential{p}(X)}
+		\par\mathCodeExample{\exponential[Big]{p}(\frac{X}{2})}
+	\item[expOp] the symbol used within the \codeCommand{\exponential}.
+		\par\mathCodeExample{\expOp}
+	\item[geodesic] a geodesic.
+		Its syntax is \codeCommand{\geodesic|#1|<#2>[#3]{#4}{#5}(#6)}.% chktex 6
+		The first argument can be used to use a different symbol (locally) for the geodesic
+		The second (optional) argument is used to modify the style of the geodesic (\codeCommand{s}ymbol, \codeCommand{l}ong, \codeCommand{a}rc or \codeCommand{p}lain, where the last is the default)
+		The third (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		It is ignored when the sixth argument is not given.
+		The fourth argument denotes the initial point (at $t = 0$).
+		The fifth argument denotes either the final point (at $t = 1$) for types~\codeCommand{l} and \codeCommand{a}, or the initial tangent vector for type~\codeCommand{p}.
+		The sixth (optional) argument denotes the evaluation point.
+		The command \codeCommand{\geodesicSymbol} is used to typeset the geodesic symbol default (i.e. globally)
+		% \begin{itemize}
+		% 	\item a style might be given in \lstinline!<>! as first, optional argument
+		% 	\item the second argument in \lstinline![]! is again scaling of the argument (ignored for \lstinline!s! or if the last is not given)
+		% 	\item the third and fourth in usual curly braces are also optional and refer to either start and end point or start point and tangent,
+		% 	\item the argument of the geodesic is given in \lstinline!()! as fifth argument
+		% \end{itemize}
+		% Note that omiting the third and fourth might lead to undesired print, especially for \lstinline!l!ong.
+		\par\mathCodeExample{\geodesic<s>}
+		\par\mathCodeExample{\geodesic<s>(t)} %chktex 36
+		\par\mathCodeExample{\geodesic<l>{p}{q}}
+		\par\mathCodeExample{\geodesic<l>{p}{q}(t)} %chktex 36
+		\par\mathCodeExample{\geodesic<a>{p}{q}}
+		\par\mathCodeExample{\geodesic<a>[Big]{p}{q}(\dfrac{t}{2})} %chktex 36
+		\par\mathCodeExample{\geodesic<p>{p}{X}}
+		\par\mathCodeExample{\geodesic<p>{p}{X}(t)} %chktex 36
+		\par\mathCodeExample{\geodesic<p>[Big]{p}{X}(\dfrac{t}{2})} %chktex 36
+		\par\mathCodeExample{\geodesic[big]{p}{X}((1-t)t)} %chktex 36
+		\par\mathCodeExample{\geodesic|\dot\gamma|{p}{X}(t)} %chktex 36
+	\item[geodesicSymbol] symbol to use for the geodesic in \codeCommand{\geodesic}
+		\par\mathCodeExample{\geodesicSymbol}
+	\item[inverseRetract] use an inverse retraction, the arguments are similar to \codeCommand{\logarithm} but use the \codeCommand{\retractionSymbol}
+	\par\mathCodeExample{\inverseRetract{p}q}
+	\par\mathCodeExample{\inverseRetract{p}(q)}
+	\par\mathCodeExample{\inverseRetract[Big]{p}(q)}
+	\item[logarithm] the logarithmic map.
+		Its syntax is \codeCommand{\logarithm[#1]{#2}(#3)}.
+		The first argument can be used to scale the third.
+		The second argument denotes the base point and is mandatory.
+		The third argument denotes another point, which is optional, but
+		if provided, the argument is put in brackets. The first following example
+		illustrates the case, where no brackets are put. Note that the space is
+		mandatory.
+		\par\mathCodeExample{\logarithm{p}q}
+		\par\mathCodeExample{\logarithm{p}(q)}
+		\par\mathCodeExample{\logarithm[Big]{p}(q)}
+	\item[logOp] the symbol used within the \codeCommand{\logarithm}.
+		\par\mathCodeExample{\logOp}
+	\item[parallelTransport] the parallel transport.\\
+		Its syntax is \codeCommand{\parallelTransport[#1]{#2}{#3}(#4){5}}.
+		The first (optional) argument is used to scale the parantheses enclosing the argument \#4.\cref{footnote:amsmath_sizes}
+		The second argument is the start point of parallel transport on a manifold.
+		The third argument is the end point of parallel transport on a manifold.
+		The fourth (optional) argument is the tangent vector that is transported.
+		Putting it in brackets enables the scaling by the first argument.
+		The fifth (optional) argument specifies an exponent, for example to parallel transport along a curve $c$
+		\par\mathCodeExample{\parallelTransport{p}{q}X}
+		\par\mathCodeExample{\parallelTransport{p}{q}(X)}
+		\par\mathCodeExample{\parallelTransport[big]{p}{q}(X)}
+		\par\mathCodeExample{\parallelTransport{p}{q}(X)[c]}
+		\par\mathCodeExample{\parallelTransport{p}{q}[c]}
+	\item[parallelTransportDir] similar to \codeCommand{\parallelTransport}, but the third
+		argument is a direction to transport into. This can be rewritten to the classical notation
+		applying an exponential map from the base point (\#2) to th direction (\#3).
+		The fifth (optional) argument specifies an exponent, for example to parallel transport along a curve $c$
+		\par\mathCodeExample{\parallelTransportDir{p}{Y}X}
+		\par\mathCodeExample{\parallelTransportDir{p}{Y}(X)}
+		\par\mathCodeExample{\parallelTransportDir[big]{p}{Y}(X)}
+		\par\mathCodeExample{\parallelTransportDir{p}{Y}(X)[c]}
+		\par\mathCodeExample{\parallelTransportDir{p}{Y}[c]}
+	\item[parallelTransportSymbol]\hspace{4em}the symbol to use within \codeCommand{\parallelTransport} and \codeCommand{\parallelTransportDir}
+		\par\mathCodeExample{\parallelTransportSymbol}
+	\item[retract] a retraction.\\
+		Its syntax is \codeCommand{\retract[#1]{#2}{#3}}.
+		The first argument can be used to scale the third.
+		The second argument denotes the base point.
+		The third argument denotes the tangent vector, which is optional, but
+		if provided, the argument is put in brackets. The first following example
+		illustrates the case, where no brackets are put. Note that the space is
+		mandatory.
+		\par\mathCodeExample{\retract{p}X}
+		\par\mathCodeExample{\retract{p}(X)}
+		\par\mathCodeExample{\retract[Big]{p}(\frac{X}{2})}
+	\item[retractionSymbol] symbol to use for a retraction and an inverse retraction,
+		see \codeCommand{\retract} and \codeCommand{\inverseRetract}.
+		\par\mathCodeExample{\retractionSymbol}
+	\item[riemannian] the Riemannian metric (family of inner products on the tangent spaces).
+		Its syntax is \codeCommand{\riemannian[#1]{#2}{#3}[#4]}.
+		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The second argument denotes the first factor.
+		The third argument denotes the second factor.
+		The fourth (optional) argument denotes the base point of the tangent space.
+		\par\mathCodeExample{\riemannian{X_1}{X_2}}
+		\par\mathCodeExample{\riemannian{Y_1}{Y_2}[q]}
+		\par\mathCodeExample{\riemannian[Big]{\dfrac{1}{2}X_1}{X_2}[p]}
+	\item[riemanniannorm] the norm induced by the Riemannian metric.
+		Its syntax is \codeCommand{\riemanniannorm[#1]{#2}[#3]}.
+		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The second argument denotes the argument.
+		The third (optional) argument denotes the base point of the tangent space.
+		\par\mathCodeExample{\riemanniannorm{X}}
+		\par\mathCodeExample{\riemanniannorm{Y}[p]}
+		\par\mathCodeExample{\riemanniannorm[Big]{\dfrac{1}{2}X}[p]}
+	\item[secondCovariantDerivative]\hspace{4em}is the second-order covariant derivative.
+		Its syntax is \codeCommand{\secondCovariantDerivative{#1}{#2}[#3]}.
+		The first argument is the vector (or vector field) determining the first direction of differentiation.
+		The second argument is the vector (or vector field) determining the second direction of differentiation.
+		The third (optional) argument denotes the tensor field being differentiated.
+		\par\mathCodeExample{\secondCovariantDerivative{X}{Y}{T}}
+	\item[secondCovariantDerivativeSymbol]\hspace{4em}the symbol used for the second covariant derivative \codeCommand{\secondCovariantDerivative}.
+		\par\mathCodeExample{\secondCovariantDerivativeSymbol}
+	\item[tangentSpace] the tangent space.
+		Its syntax is \codeCommand{\tangentSpace{#1}[#2]}.
+		The first argument denotes the base point.
+		The second (optional) argument denotes the manifold, which defaults to $\cM$.
+		\par\mathCodeExample{\tangentSpace{p}}
+		\par\mathCodeExample{\tangentSpace{q}[\cN]}
+	\item[tangentBundle] the tangent bundle.
+		Its syntax is \codeCommand{\tangentBundle[#1]}.
+		The (optional) argument denotes the manifold, which defaults to $\cM$.
+		\par\mathCodeExample{\tangentBundle}
+		\par\mathCodeExample{\tangentBundle[\cN]}
+	\item[tangentSpaceSymbol] the symbol used within \codeCommand{\tangent}.
+		\par\mathCodeExample{\tangentSpaceSymbol}
+	\item[tensorBundle] the tensor bundle.
+		Its syntax is \codeCommand{\tensorBundle{#1}{#2}[#3]}.
+		The first argument denotes the number $r$ of elements of the cotangent space the tensors accept.
+		The second argument denotes the number $s$ of elements of the tangent space the tensors accept.
+		The third (optional) argument denotes the manifold, which defaults to $\cM$.
+		\par\mathCodeExample{\tensorBundle{r}{s}}
+		\par\mathCodeExample{\tensorBundle{r}{s}[\cN]}
+	\item[tensorSpace] a tensor space over a vector space~$V$.
+		Its syntax is \codeCommand{\tensorSpace{#1}{#2}[#3]}.
+		The first argument denotes the number $r$ of elements of the dual space~$V^*$ the tensors accept.
+		The second argument denotes the number $s$ of elements of the space~$V$ the tensors accept.
+		The third (optional) argument denotes the vector space, which defaults to empty.
+		\par\mathCodeExample{\tensorSpace{r}{s}}
+		\par\mathCodeExample{\tensorSpace{r}{s}[V]}
+	\item[tensorSpaceSymbol] the symbol used within \codeCommand{\tensorSpace} and \codeCommand{\tensorBundle}.
+		\par\mathCodeExample{\tensorSpaceSymbol}
+	\item[vectorTransport] a vector transport.\\
+		Its syntax is \codeCommand{\vectorTransport[#1]{#2}{#3}(#4)[#5]}.
+		The first (optional) argument is used to scale the parantheses enclosing the argument \#4.\cref{footnote:amsmath_sizes}
+		The second argument is the start point of vector transport on a manifold.
+		The third argument is the end point of vector transport on a manifold.
+		The fourth (optional) argument is the tangent vector that is transported.
+		Putting it in brackets enables the scaling by the first argument.
+		Finally a retraction symbol can be added in the exponent to distinguish vector transports as \#5.
+		\par\mathCodeExample{\vectorTransport{p}{q}X}
+		\par\mathCodeExample{\vectorTransport{p}{q}(X)}
+		\par\mathCodeExample{\vectorTransport[big]{p}{q}(X)}
+		\par\mathCodeExample{\vectorTransport{p}{q}(X)[\retractionSymbol]}
+	\item[vectorTransportDir] similar to \codeCommand{\vectorTransport}, but the third
+		argument is a direction to transport into. This can be rewritten to the classical notation
+		applying an retraction from the base point (\#2) to th direction (\#3).
+		\par\mathCodeExample{\vectorTransportDir{p}{Y}X}
+		\par\mathCodeExample{\vectorTransportDir{p}{Y}(X)}
+		\par\mathCodeExample{\vectorTransportDir[big]{p}{Y}(X)}
+		\par\mathCodeExample{\vectorTransportDir{p}{Y}(X)[\retractionSymbol]}
+	\item[vectorTransportSymbol]\hspace{4em}the symbol to use within \codeCommand{\vectorTransport} and \codeCommand{\vectorTransportDir}
+		\par\mathCodeExample{\vectorTransportSymbol}
+\end{commandlist}
+
+
+\subsection{Optimization}\label{subsec:optimization}
+
+The semantic file \file{mathemantics-optimization.sty} collects definitions and notations related to optimization.
+\begin{commandlist}
+	\item[linearizingcone] the linearizing cone.
+		Its syntax is \codeCommand{\linearizingcone[#1]{#2}{#3}}.
+		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The second argument denotes the set.
+		The third argument denotes the base point.
+		\par\mathCodeExample{\linearizingcone{A}{x}}
+		\par\mathCodeExample{\linearizingcone{A}{x^2}}
+		\par\mathCodeExample{\linearizingcone[big]{A}{x^2}}
+
+	\item[normalcone] the normal cone.
+		Its syntax is \codeCommand{\normalcone[#1]{#2}{#3}}.
+		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The second argument denotes the set.
+		The third argument denotes the base point.
+		\par\mathCodeExample{\normalcone{A}{x}}
+		\par\mathCodeExample{\normalcone{A}{x^2}}
+		\par\mathCodeExample{\normalcone[big]{A}{x^2}}
+
+	\item[polarcone] the polar cone of a set \mathCodeExample{\polarcone{A}}
+
+	\item[radialcone] the radial cone.
+		Its syntax is \codeCommand{\radialcone[#1]{#2}{#3}}.
+		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The second argument denotes the set.
+		The third argument denotes the base point.
+		\par\mathCodeExample{\radialcone{A}{x}}
+		\par\mathCodeExample{\radialcone{A}{x^2}}
+		\par\mathCodeExample{\radialcone[big]{A}{x^2}}
+
+	\item[tangentcone] the tangent cone.
+		Its syntax is \codeCommand{\tangentcone[#1]{#2}{#3}}.
+		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The second argument denotes the set.
+		The third argument denotes the base point.
+		\par\mathCodeExample{\tangentcone{A}{x}}
+		\par\mathCodeExample{\tangentcone{A}{x^2}}
+		\par\mathCodeExample{\tangentcone[big]{A}{x^2}}
+\end{commandlist}
 \end{document}

@@ -1,0 +1,40 @@
+% This LaTeX package provides numerous commands relevant to typesetting
+% material related to manifolds and differential geometry.
+\ProvidesPackage{mathemantics-optimization}
+
+% Resolve the dependencies of this package
+\RequirePackage{mathemantics-semantic}
+
+% Define some symbols
+\newcommand{\normalCone}{\cN}
+\newcommand{\radialCone}{\cK}
+\newcommand{\tangentCone}{\cT}
+\newcommand{\linearizingCone}{\cT^{\textup{lin}}}
+
+% Define a command for the radial cone
+% The optional argument [#1] scales the delimiters
+% Argument {#2} is the set
+% Argument {#3} is the base point
+\NewDocumentCommand{\radialcone}{ O{} m m }{\radialCone_{#2}\enclose[#1]{(}{#3}{)}}
+
+% Define a command for the tangent cone
+% The optional argument [#1] scales the delimiters
+% Argument {#2} is the set
+% Argument {#3} is the base point
+\NewDocumentCommand{\tangentcone}{ O{} m m }{\tangentCone_{#2}\enclose[#1]{(}{#3}{)}}
+
+% Define a command for the linearizing cone
+% The optional argument [#1] scales the delimiters
+% Argument {#2} is the set
+% Argument {#3} is the base point
+\NewDocumentCommand{\linearizingcone}{ O{} m m }{\linearizingCone_{#2}\enclose[#1]{(}{#3}{)}}
+
+% Define a command for the normal cone
+% The optional argument [#1] scales the delimiters
+% Argument {#2} is the set
+% Argument {#3} is the base point
+\NewDocumentCommand{\normalcone}{ O{} m m }{\normalCone_{#2}\enclose[#1]{(}{#3}{)}}
+
+% Define a command for the polar cone
+% Argument {#1} is the set
+\NewDocumentCommand{\polarcone}{ m }{#1^\circ}
