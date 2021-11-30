@@ -1,6 +1,10 @@
 \ProvidesPackage{mathemantics-syntax}
-
-% Resolve the dependencies of this package
+\provideboolean{mathemantics@syntax@shortbb}
+\setboolean{mathemantics@syntax@shortbb}{false}% default: false
+\DeclareOption{shortbb}{%
+    \setboolean{mathemantics@syntax@shortbb}{true}% Some Code
+}
+\ProcessOptions\relax
 \RequirePackage{mathemantics-commons}
 
 % Define commands for bold upper-case letters in math mode
@@ -327,13 +331,42 @@
 \newcommand{\vOmega}{{\vec{\Omega}}}
 
 % Define commands for some blackboard characters in math mode, mainly used for sets
+\newcommand{\bbA}{\mathbb{A}}
+\newcommand{\bbB}{\mathbb{B}}
 \newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbD}{\mathbb{D}}
+\newcommand{\bbE}{\mathbb{E}}
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbG}{\mathbb{G}}
+\newcommand{\bbH}{\mathbb{H}}
+\newcommand{\bbI}{\mathbb{I}}
+\newcommand{\bbJ}{\mathbb{J}}
 \newcommand{\bbK}{\mathbb{K}}
+\newcommand{\bbL}{\mathbb{L}}
+\newcommand{\bbM}{\mathbb{M}}
 \newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbO}{\mathbb{O}}
+\newcommand{\bbP}{\mathbb{P}}
 \newcommand{\bbQ}{\mathbb{Q}}
 \newcommand{\bbR}{\mathbb{R}}
 \newcommand{\bbS}{\mathbb{S}}
+\newcommand{\bbT}{\mathbb{T}}
+\newcommand{\bbU}{\mathbb{U}}
+\newcommand{\bbV}{\mathbb{V}}
+\newcommand{\bbW}{\mathbb{W}}
+\newcommand{\bbX}{\mathbb{X}}
+\newcommand{\bbY}{\mathbb{Y}}
 \newcommand{\bbZ}{\mathbb{Z}}
+
+\ifthenelse{\boolean{mathemantics@syntax@shortbb}}{
+	\providecommand{\C}{\bbC}%
+	\providecommand{\K}{\bbK}%
+	\providecommand{\N}{\bbN}%
+	\providecommand{\Q}{\bbQ}%
+	\providecommand{\R}{\bbR}%
+	\providecommand{\Z}{\bbZ}%
+}{}
+
 
 % Define \enclose command
 % \enclose[a]{b}{c}{d} encloses content (c) in brackets (b,d) where the optional parameter

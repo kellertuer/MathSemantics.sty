@@ -1,25 +1,51 @@
 % commands used in the docs.
-\ProvidesPackage{mathemantics-documentaation-local}
-
+\ProvidesPackage{mathemantics-documentation-local}
 \RequirePackage{fontawesome5}
-
 % Load the metalogo package (which provides the \XeTeX command)
 \RequirePackage{metalogo}
 
-\addtokomafont{pageheadfoot}{\normalfont\sffamily\footnotesize}
+\RequirePackage{xcolor}
 \RequirePackage{lineno}
 \RequirePackage{scrdate}
 \RequirePackage{lastpage}
 \RequirePackage{scrlayer-scrpage}
+\RequirePackage{stmaryrd}
+\RequirePackage{enumitem}
 \RequirePackage{minted}
+% load fonts
+\RequirePackage{microtype}
+\RequirePackage[proportional]{libertine}
+\RequirePackage[libertine,liby]{newtxmath}
+\RequirePackage[scaled=0.95,varqu,varl]{inconsolata}
+
 \RequirePackage{hyperref}
-\RequirePackage{cleveref}
+\RequirePackage[nameinlink,capitalize,noabbrev]{cleveref}
+% Load Package - after minted
+\RequirePackage[shortbb]{mathemantics}
+
+\definecolor{TolMutedBlue}{HTML}{332288}
+\definecolor{TolMutedGreen}{HTML}{117733}
+\definecolor{TolMutedWine}{HTML}{882255}
+
+\crefformat{footnote}{#2\footnotemark[#1]#3}
+\hypersetup{
+  pdfpagemode=UseOutlines,
+  colorlinks=true,
+  linkcolor=TolMutedBlue,
+  filecolor=TolMutedWine,
+  urlcolor=TolMutedWine,
+  citecolor=TolMutedGreen,
+  plainpages=false,
+  hypertexnames=false
+}
+
 
 % Set up the appearance of author, date, title, and section headings etc.
 \renewcommand*{\sectfont}{\color{TolMutedBlue}\sffamily}
 \setkomafont{author}{\large\normalfont\sffamily}
 \setkomafont{date}{\large\normalfont\sffamily}
 \setkomafont{title}{\color{TolMutedBlue}\normalfont\sffamily\scshape}
+\addtokomafont{pageheadfoot}{\normalfont\sffamily\footnotesize}
 \addtokomafont{section}{\scshape}
 \addtokomafont{subsection}{\scshape}
 \addtokomafont{subsubsection}{\scshape\itshape}
@@ -32,6 +58,7 @@
 \lehead[]{R. Bergmann}
 \refoot[]{\ISOToday}
 \ofoot[page~\thepage~of~\pageref*{LastPage}]{page~\thepage~of~\pageref*{LastPage}}
+\useosf
 
 % Define a command which displays a command inline
 \NewDocumentCommand\codeCommand{v}{\mintinline{LaTeX}|#1|}
@@ -39,7 +66,7 @@
 % Define a command which displays code and renders its results
 \NewDocumentCommand\codeExample{v}{%
   \faIcon{code}\hspace{.25cm}%
-  \mintinline{LaTeX}|#1|
+  \mintinline{LaTeX}{#1}
   \hspace{.5cm}\faEye[regular]\hspace{.25cm}%
   \scantokens{#1\noexpand}%
 }

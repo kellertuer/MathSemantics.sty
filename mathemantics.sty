@@ -2,12 +2,17 @@
 % Mathemantics.sty
 %
 \ProvidesPackage{mathemantics}
+\DeclareOption{shortbb}{%
+    \PassOptionsToPackage{shortbb}{mathemantics-syntax}
+}
+\ProcessOptions\relax
 
 \RequirePackage{mathemantics-commons}
-\RequirePackage{mathemantics-colors}
+
 \RequirePackage{mathemantics-syntax}
 \RequirePackage{mathemantics-abbreviations}
 \RequirePackage{mathemantics-names}
+
 \RequirePackage{mathemantics-semantic}
 
 \RequirePackage{mathemantics-manifolds}

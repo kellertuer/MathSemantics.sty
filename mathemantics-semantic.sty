@@ -65,7 +65,8 @@
 \let\div\undefined \DeclareMathOperator{\div}{div}
 \DeclareMathOperator{\Div}{Div}
 % https://tex.stackexchange.com/questions/140642/conditionally-remove-the-space-before-a-one-letter-operator
-\let\d\undefined \newcommand{\upd}{\mathop{}\!\textup{d}}  % compare commath.sty
+\newcommand{\dInt}{\mathop{}\!\textup{d}}
+\let\d\undefined\newcommand{\d}{\dInt}
 \let\diag\undefined \DeclareMathOperator{\diag}{diag}  % etna.cls
 \DeclareMathOperator{\diam}{diam}
 \DeclareMathOperator{\dom}{dom}

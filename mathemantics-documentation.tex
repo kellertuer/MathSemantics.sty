@@ -1,23 +1,16 @@
 \documentclass[english,a4paper,DIV=12,parskip=full]{scrartcl}
-
-% load fonts
-\usepackage[proportional]{libertine}
-\usepackage[libertine,liby]{newtxmath}
-\useosf
-\usepackage[scaled=0.95,varqu,varl]{inconsolata}
-\usepackage{microtype}
-
-% Load Package
-\usepackage{mathemantics}
 \usepackage{mathemantics-documentation-local}
-
 \date{\ISOToday}
 \author{Ronny Bergmann \and Roland Herzog}
 \title{Mathemantics.sty – Semantic Math Commands}
 \begin{document}
     \maketitle
     \section{Introduction}
-    This package aims to provide some commands for ease of use in mathematics.
+    This package aims to provide semantic commands for ease of use in mathematics.
+
+    It is a spin-off and developed in the suite of packages from the former numapde-group in Chemnitz,
+    see the original repository at \url{https://gitlab.hrz.tu-chemnitz.de/numapde-public/numapde-latex}.
+
     The aim is to first ease the use of some often used letters and low-level formats like
     bold face letters \mathCodeExample{\bbR}, but also to provide high level commands that
     make typing mathematics easier, for example using \mathCodeExample{\abs{\frac{1}{2}}} and  \mathCodeExample{\abs[Big]{\frac{1}{2}}}
@@ -25,14 +18,28 @@
     The parts of this packages (per section) are stored in separate files and can be loaded separately.
     If one part depends on another package, this is mentioned in the beginning of the section.
 
+    The package should be loaded late, since it might overwrite a few commands,
+    currently most prominently \codeCommand{\d} which is overwritten by \mintinline{LaTeX}|cleveref| in case \mintinline{LaTeX}|minted| is loaded.
+    So for more flexibility, there is the alternative command \codeCommand{\dInt}.
+
     \section{Package Options}
         \label{sec:package-options}
         \begin{commandlist}
-            \item[shortbb] use shorter notations for the bold math fonts, \codeCommand{\R} for \codeCommand{\bbR}. (planned)
+            \item[shortbb] use shorter notations for the blackboard-bold math letters \codeCommand{\C, \K, \N, \Q, \R, \Z}
         \end{commandlist}
 
     \section{Required Packages}
         \label{sec:required-packages}
+        \begin{description}
+            \item[amssymb.sty] defines mathematical symbol fonts
+            \item[ifthen.sty] facilitates the definition of conditional commands
+            \item[ifxetex.sty] provides a way to check if a document is being processed by \XeTeX{} and company
+            \item[mathtools.sty] provides lots of improvements for math typesetting (includes \file{amsmath.sty})
+            \item[xifthen.sty] extends \file{ifthen.sty} by adding new boolean conditions
+            \item[xparse.sty] provides a high-level interface to define new commands
+            \item[xspace.sty] adds space depending on context
+        \end{description}
+
 
     \section{Syntax}
         \label{sec:syntax}
@@ -60,7 +67,9 @@
         \item[vAlpha\ldots vOmega] upper-case Greek letters with a \textbf{v}ector accent \mathCodeExample{\vGamma,\vDelta}
         \item[vnull] vector zero \mathCodeExample{\vnull}
         \item[vone] vector one \mathCodeExample{\vone}
-        \item[bbC, bbK, bbN, bbQ, bbR, bbS, bbZ] mathematical sets \par\mathCodeExample{\bbC,\bbK,\bbN,\bbQ,\bbR,\bbS,\bbZ}
+        \item[bbA,...,bbZ] blackboard-bold uppercase letters\par\mathCodeExample{\bbC,\bbK,\bbN,\bbQ,\bbR,\bbS,\bbZ}
+        \\ use the package option \codeCommand{shortbb} to introduce\\
+        \mathCodeExample{\C,\K,\N,\Q,\R,\Z} if not already defined elsewhere (\ie they are not redefined, only \emph{provided}.
     \end{commandlist}
 
     \subsection{Syntax Helpers}\label{subsec:syntax_helpers}
@@ -131,21 +140,25 @@
     \end{commandlist}
 
     \section{Abbreviations}
-
+    \subsection{English}
+    \begin{commandlist}
+        \item[aa] almost all \codeExample{\aa}
+        \item[ale] almost everwhere \codeExample{\ale}
+        \item[eg] exempli gratia (for example) \codeExample{\eg}
+        \item[etc] et cetera (and so on) \codeExample{\etc}
+        \item[ie] id est (id est) \codeExample{\ie}
+        \item[iid] independent and identically distributed \codeExample{\iid}
+        \item[spd] symmetric positive definite \codeExample{\spd}
+        \item[st] such that or subject to \codeExample{\st}
+        \item[wrt] with respect to \codeExample{\wrt}
+    \end{commandlist}
+    \subsection{German}
         \begin{commandlist}
-            \item[aa] almost all \codeExample{\aa}
-            \item[ale] almost everwhere \codeExample{\ale}\\
-            \item[ampl] \justCodeExample{\ampl}
             \item[bspw] beispielsweise (for example) \codeExample{\bspw}
             \item[bzgl] bezüglich (with regard to) \codeExample{\bzgl}
             \item[bzw] beziehungsweise (respectively) \codeExample{\bzw}
-            \item[cg] \justCodeExample{\cg}
-            \item[cpp] \justCodeExample{\cpp}
-            \item[cppmat] \justCodeExample{\cppmat}
             \item[Dah] Das heißt (That is, beginning of phrase) \codeExample{\Dah}
             \item[dah] das heißt (that is) \codeExample{\dah}
-            \item[eg] exempli gratia (for example) \codeExample{\eg}
-            \item[etc] et cetera (and so on) \codeExample{\etc}
             \item[evtl] eventuell (possibly) \codeExample{\evtl}
             \item[fs] fast sicher \codeExample{\fs}
             \item[fue] fast überall \codeExample{\fue}
@@ -153,8 +166,6 @@
             \item[iA] im Allgemeinen \codeExample{\iA}
             \item[idR] in der Regel \codeExample{\idR}
             \item[IdR] In der Regel (beginning of phrase) \codeExample{\IdR}
-            \item[ie] id est (id est) \codeExample{\ie}
-            \item[iid] independent and identically distributed \codeExample{\iid}
             \item[iW] im Wesentlichen \codeExample{\iW}
             \item[IW] Im Wesentlichen (beginning of phrase) \codeExample{\IW}
             \item[mE] meines Erachtens \codeExample{\mE}
@@ -162,9 +173,7 @@
             \item[OBdA] ohne Beschränkung der Allgemeinheit (beginning of phrase) \par\codeExample{\OBdA}
             \item[og] oben genannt \codeExample{\og}
             \item[oae] oder ähnliche \codeExample{\oae}
-            \item[spd] symmetric positive definite \codeExample{\spd}
             \item[so] siehe oben \codeExample{\so}
-            \item[st] such that or subject to \codeExample{\st}
             \item[ua] unter anderem \codeExample{\ua}
             \item[Ua] Unter anderem (beginning of phrase) \codeExample{\Ua}
             \item[ug] unten genannt \codeExample{\ug}
@@ -172,7 +181,6 @@
             \item[uU] unter Umständen \codeExample{\uU}
             \item[UnU] Unter Umständen (beginning of phrase) \codeExample{\UnU}
             \item[vgl] vergleiche (compare) \codeExample{\vgl}
-            \item[wrt] with respect to \codeExample{\wrt}
             \item[zB] zum Beisiel \codeExample{\zB}
             \item[ZB] Zum Beispiel (beginning of phrase) \codeExample{\ZB}
             \item[zHd] zu Händen \codeExample{\zHd}
@@ -181,8 +189,12 @@
     \section{Names}
         \begin{commandlist}
             \item[adimat] \justCodeExample{\adimat}
+            \item[ampl] \justCodeExample{\ampl}
             \item[BibTeX] \justCodeExample{\BibTeX}
             \item[BibLaTeX] \justCodeExample{\BibLaTeX}
+            \item[cg] \justCodeExample{\cg}
+            \item[cpp] \justCodeExample{\cpp}
+            \item[cppmat] \justCodeExample{\cppmat}
             \item[dolfin] \justCodeExample{\dolfin}
             \item[dolfinplot] \justCodeExample{\dolfinplot}
             \item[dolfinadjoint] \justCodeExample{\dolfinadjoint}
@@ -272,8 +284,9 @@
         \item[corresponds] binary operator for correspondence \mathCodeExample{A\corresponds B}
         \item[cov] covariance \mathCodeExample{\cov}
         \item[curl] the curl operator \mathCodeExample{\curl}
-        \item[d] integral symbol with prepended space, as in
+        \item[d, dInt] integral symbol with prepended space, as in
             \par\mathCodeExample{\int_\bbR \exp(-x^2) \d x}
+            \\Since \codeCommand{\d} is often overridden, \codeCommand{\dInt} is the safe alternative
         \item[dev] deviator of a matrix \mathCodeExample{\dev A}
         \item[diag] diagonal matrix composed of entries in a vector, or diagonal of a matrix
             \par\mathCodeExample{\diag(a)}
@@ -380,7 +393,7 @@
             The first (optional) argument is used to scale the deliminters enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
             The second argument denotes the argument to be restricted/evaluated.
             The third argument denotes the restriction set/evaluation point.
-            \par\mathCodeExample{\restr[auto]{\frac{\d x}{\d t}(f \circ \gamma)(t)}{t=0}}
+            \par\mathCodeExample{\restr[auto]{\frac{\d}{\d t}(f \circ \gamma)(t)}{t=0}}
         \item[ri] relative inerior \mathCodeExample{\ri}
 
 
@@ -392,8 +405,7 @@
             \par\mathCodeExample{\setDef{x\in\bbR}{x>5}}\\
             \par\mathCodeExample{\setDef[Big]{x\in\bbR}{x>\dfrac{1}{2}}}
         \item[setMid] divider within \codeCommand{\setDef} (set definitions).
-            This defaults to \codeCommand{|}.
-            % To produce a colon as divider, use \codeCommand{\renewcommand{\setMid}{.\colon}}.
+            \\This defaults to \mathCodeExample{\setMid}.
         \item[sgn] sign \mathCodeExample{\sgn}
         \item[Sgn] sign (set valued) \mathCodeExample{\Sgn}
         \item[supp] support (of a function) \mathCodeExample{\supp F} % chktex 1
@@ -418,7 +430,7 @@ Any semantic topic files should always build on \file{numapde-semantic.sty}.
 
 The semantic file \file{numapde-manifolds.sty} collects definitions and notations for Riemannian manifolds.
 \begin{commandlist}
-	\item[bitangent] the bitangent space.
+	\item[bitangentSpace] the bitangent space.
 		Its syntax is \codeCommand{\bitangent{#1}[#2]}.
 		The first argument denotes the base point.
 		The second (optional) argument denotes the manifold, which defaults to $\cM$.
@@ -426,7 +438,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		\par\mathCodeExample{\bitangentSpace{q}[\cN]}
 	\item[bitangentSpaceSymbol] the symbol used within \codeCommand{\bitangentSpace}.
 		\par\mathCodeExample{\bitangentSpaceSymbol}
-	\item[cotangent] the cotangent space.
+	\item[cotangentSpace] the cotangent space.
 		Its syntax is \codeCommand{\cotangentSpace{#1}[#2]}.
 		The first argument denotes the base point.
 		The second (optional) argument denotes the manifold, which defaults to $\cM$.
@@ -527,7 +539,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		\par\mathCodeExample{\parallelTransportDir[big]{p}{Y}(X)}
 		\par\mathCodeExample{\parallelTransportDir{p}{Y}(X)[c]}
 		\par\mathCodeExample{\parallelTransportDir{p}{Y}[c]}
-	\item[parallelTransportSymbol]\hspace{4em}the symbol to use within \codeCommand{\parallelTransport} and \codeCommand{\parallelTransportDir}
+	\item[parallelTransportSymbol]\hspace*{2em}the symbol to use within \codeCommand{\parallelTransport} and \codeCommand{\parallelTransportDir}
 		\par\mathCodeExample{\parallelTransportSymbol}
 	\item[retract] a retraction.\\
 		Its syntax is \codeCommand{\retract[#1]{#2}{#3}}.
@@ -552,7 +564,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		\par\mathCodeExample{\riemannian{X_1}{X_2}}
 		\par\mathCodeExample{\riemannian{Y_1}{Y_2}[q]}
 		\par\mathCodeExample{\riemannian[Big]{\dfrac{1}{2}X_1}{X_2}[p]}
-	\item[riemanniannorm] the norm induced by the Riemannian metric.
+	\item[riemanniannorm] the norm induced by the Riemannian metric.\\
 		Its syntax is \codeCommand{\riemanniannorm[#1]{#2}[#3]}.
 		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
 		The second argument denotes the argument.
@@ -560,13 +572,14 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		\par\mathCodeExample{\riemanniannorm{X}}
 		\par\mathCodeExample{\riemanniannorm{Y}[p]}
 		\par\mathCodeExample{\riemanniannorm[Big]{\dfrac{1}{2}X}[p]}
-	\item[secondCovariantDerivative]\hspace{4em}is the second-order covariant derivative.
+	\item[secondCovariantDerivative]\hspace*{3em}is the second-order covariant derivative.\\
 		Its syntax is \codeCommand{\secondCovariantDerivative{#1}{#2}[#3]}.
 		The first argument is the vector (or vector field) determining the first direction of differentiation.
 		The second argument is the vector (or vector field) determining the second direction of differentiation.
 		The third (optional) argument denotes the tensor field being differentiated.
 		\par\mathCodeExample{\secondCovariantDerivative{X}{Y}{T}}
-	\item[secondCovariantDerivativeSymbol]\hspace{4em}the symbol used for the second covariant derivative \codeCommand{\secondCovariantDerivative}.
+	\item[secondCovariantDerivativeSymbol]\hspace*{6em} the symbol used for the second covariant derivative.\\
+        This is used within \codeCommand{\secondCovariantDerivative}.
 		\par\mathCodeExample{\secondCovariantDerivativeSymbol}
 	\item[tangentSpace] the tangent space.
 		Its syntax is \codeCommand{\tangentSpace{#1}[#2]}.
@@ -616,7 +629,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		\par\mathCodeExample{\vectorTransportDir{p}{Y}(X)}
 		\par\mathCodeExample{\vectorTransportDir[big]{p}{Y}(X)}
 		\par\mathCodeExample{\vectorTransportDir{p}{Y}(X)[\retractionSymbol]}
-	\item[vectorTransportSymbol]\hspace{4em}the symbol to use within \codeCommand{\vectorTransport} and \codeCommand{\vectorTransportDir}
+	\item[vectorTransportSymbol]\hspace*{2em}the symbol to use within \codeCommand{\vectorTransport} and \codeCommand{\vectorTransportDir}
 		\par\mathCodeExample{\vectorTransportSymbol}
 \end{commandlist}
 
