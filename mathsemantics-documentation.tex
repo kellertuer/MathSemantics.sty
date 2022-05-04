@@ -1,26 +1,38 @@
-\documentclass[english,a4paper,DIV=12,parskip=full]{scrartcl}
+\documentclass[english,a4paper,DIV=12,parskip=full,oneside]{scrartcl}
 \usepackage{mathsemantics-documentation-local}
 \date{\ISOToday}
 \author{Ronny Bergmann \and Roland Herzog}
 \title{MathSemantics.sty – Semantic Math Commands}
 \begin{document}
     \maketitle
+    \tableofcontents
     \section{Introduction}
     This package aims to provide semantic commands for ease of use in mathematics.
 
     It is a spin-off and developed in the suite of packages from the former numapde-group in Chemnitz,
     see the original repository at \url{https://gitlab.hrz.tu-chemnitz.de/numapde-public/numapde-latex}.
 
+    Throughout this documentation most commands are directly illustrated by examples, which are
+    both displayed as code (\faIcon{code} or \faIcon{code}$_{\hspace{-.5ex}\text{\color{TolMutedGreen}\faIcon{dollar-sign}}}$ for math examples) and its rendered result in \LaTeX\ (\faEye[regular]).
+    Two examples are \mathCodeExample{\R} and \codeExample{\eg}
+
     The aim is to first ease the use of some often used letters and low-level formats like
     bold face letters \mathCodeExample{\bbR}, but also to provide high level commands that
     make typing mathematics easier, for example using \mathCodeExample{\abs{\frac{1}{2}}} and  \mathCodeExample{\abs[Big]{\frac{1}{2}}}
+    This is the main goal in \cref{sec:syntax} about syntactical commands for mathematics.
+    A next more support/helping section about abbreviations and names is \cref{sec:abbreviations}.
 
-    The parts of this packages (per section) are stored in separate files and can be loaded separately.
-    If one part depends on another package, this is mentioned in the beginning of the section.
+    The first main part on general semantic commands is \cref{sec:semantic}.
+
+    While all these are loaded by default. The next part, \cref{sec:semantics-by-topic},
+    introduces semantical commands for specific topics.
+    These are given in separate sub-packages and can be loaded if you work in this area and want to use the commands.
 
     The package should be loaded late, since it might overwrite a few commands,
     currently most prominently \codeCommand{\d} which is overwritten by \mintinline{LaTeX}|cleveref| in case \mintinline{LaTeX}|minted| is loaded.
     So for more flexibility, there is the alternative command \codeCommand{\dInt}.
+
+
 
     \section{Package Options}
         \label{sec:package-options}
@@ -68,7 +80,7 @@
         \item[vnull] vector zero \mathCodeExample{\vnull}
         \item[vone] vector one \mathCodeExample{\vone}
         \item[bbA,...,bbZ] blackboard-bold uppercase letters\par\mathCodeExample{\bbC,\bbK,\bbN,\bbQ,\bbR,\bbS,\bbZ}
-        \\ use the package option \codeCommand{shortbb} to introduce\\
+        \\[.5\baselineskip] use the package option \codeCommand{shortbb} to introduce\\
         \mathCodeExample{\C,\K,\N,\Q,\R,\Z} if not already defined elsewhere (\ie they are not redefined, only \emph{provided}.
     \end{commandlist}
 
@@ -140,112 +152,114 @@
     \end{commandlist}
 
     \section{Abbreviations}
-    \subsection{English}
-    \begin{commandlist}
-        \item[aa] almost all \codeExample{\aa}
-        \item[ale] almost everwhere \codeExample{\ale}
-        \item[eg] exempli gratia (for example) \codeExample{\eg}
-        \item[etc] et cetera (and so on) \codeExample{\etc}
-        \item[ie] id est (id est) \codeExample{\ie}
-        \item[iid] independent and identically distributed \codeExample{\iid}
-        \item[spd] symmetric positive definite \codeExample{\spd}
-        \item[st] such that or subject to \codeExample{\st}
-        \item[wrt] with respect to \codeExample{\wrt}
-    \end{commandlist}
-    \subsection{German}
+        \label{sec:abbreviations}
+        \subsection{English}
         \begin{commandlist}
-            \item[bspw] beispielsweise (for example) \codeExample{\bspw}
-            \item[bzgl] bezüglich (with regard to) \codeExample{\bzgl}
-            \item[bzw] beziehungsweise (respectively) \codeExample{\bzw}
-            \item[Dah] Das heißt (That is, beginning of phrase) \codeExample{\Dah}
-            \item[dah] das heißt (that is) \codeExample{\dah}
-            \item[evtl] eventuell (possibly) \codeExample{\evtl}
-            \item[fs] fast sicher \codeExample{\fs}
-            \item[fue] fast überall \codeExample{\fue}
-            \item[IA] Im Allgemeinen (beginning of phrase) \codeExample{\IA}
-            \item[iA] im Allgemeinen \codeExample{\iA}
-            \item[idR] in der Regel \codeExample{\idR}
-            \item[IdR] In der Regel (beginning of phrase) \codeExample{\IdR}
-            \item[iW] im Wesentlichen \codeExample{\iW}
-            \item[IW] Im Wesentlichen (beginning of phrase) \codeExample{\IW}
-            \item[mE] meines Erachtens \codeExample{\mE}
-            \item[oBdA] ohne Beschränkung der Allgemeinheit \codeExample{\oBdA}
-            \item[OBdA] ohne Beschränkung der Allgemeinheit (beginning of phrase) \par\codeExample{\OBdA}
-            \item[og] oben genannt \codeExample{\og}
-            \item[oae] oder ähnliche \codeExample{\oae}
-            \item[so] siehe oben \codeExample{\so}
-            \item[ua] unter anderem \codeExample{\ua}
-            \item[Ua] Unter anderem (beginning of phrase) \codeExample{\Ua}
-            \item[ug] unten genannt \codeExample{\ug}
-            \item[usw] und so weiter (and so on) \justCodeExample{\usw}
-            \item[uU] unter Umständen \codeExample{\uU}
-            \item[UnU] Unter Umständen (beginning of phrase) \codeExample{\UnU}
-            \item[vgl] vergleiche (compare) \codeExample{\vgl}
-            \item[zB] zum Beisiel \codeExample{\zB}
-            \item[ZB] Zum Beispiel (beginning of phrase) \codeExample{\ZB}
-            \item[zHd] zu Händen \codeExample{\zHd}
+            \item[aa] almost all \codeExample{\aa}
+            \item[ale] almost everwhere \codeExample{\ale}
+            \item[eg] exempli gratia (for example) \codeExample{\eg}
+            \item[etc] et cetera (and so on) \codeExample{\etc}
+            \item[ie] id est (id est) \codeExample{\ie}
+            \item[iid] independent and identically distributed \codeExample{\iid}
+            \item[spd] symmetric positive definite \codeExample{\spd}
+            \item[st] such that or subject to \codeExample{\st}
+            \item[wrt] with respect to \codeExample{\wrt}
         \end{commandlist}
+        \subsection{German}
+            \begin{commandlist}
+                \item[bspw] beispielsweise (for example) \codeExample{\bspw}
+                \item[bzgl] bezüglich (with regard to) \codeExample{\bzgl}
+                \item[bzw] beziehungsweise (respectively) \codeExample{\bzw}
+                \item[Dah] Das heißt (That is, beginning of phrase) \codeExample{\Dah}
+                \item[dah] das heißt (that is) \codeExample{\dah}
+                \item[evtl] eventuell (possibly) \codeExample{\evtl}
+                \item[fs] fast sicher \codeExample{\fs}
+                \item[fue] fast überall \codeExample{\fue}
+                \item[IA] Im Allgemeinen (beginning of phrase) \codeExample{\IA}
+                \item[iA] im Allgemeinen \codeExample{\iA}
+                \item[idR] in der Regel \codeExample{\idR}
+                \item[IdR] In der Regel (beginning of phrase) \codeExample{\IdR}
+                \item[iW] im Wesentlichen \codeExample{\iW}
+                \item[IW] Im Wesentlichen (beginning of phrase) \codeExample{\IW}
+                \item[mE] meines Erachtens \codeExample{\mE}
+                \item[oBdA] ohne Beschränkung der Allgemeinheit \codeExample{\oBdA}
+                \item[OBdA] ohne Beschränkung der Allgemeinheit (beginning of phrase) \par\codeExample{\OBdA}
+                \item[og] oben genannt \codeExample{\og}
+                \item[oae] oder ähnliche \codeExample{\oae}
+                \item[so] siehe oben \codeExample{\so}
+                \item[ua] unter anderem \codeExample{\ua}
+                \item[Ua] Unter anderem (beginning of phrase) \codeExample{\Ua}
+                \item[ug] unten genannt \codeExample{\ug}
+                \item[usw] und so weiter (and so on) \justCodeExample{\usw}
+                \item[uU] unter Umständen \codeExample{\uU}
+                \item[UnU] Unter Umständen (beginning of phrase) \codeExample{\UnU}
+                \item[vgl] vergleiche (compare) \codeExample{\vgl}
+                \item[zB] zum Beisiel \codeExample{\zB}
+                \item[ZB] Zum Beispiel (beginning of phrase) \codeExample{\ZB}
+                \item[zHd] zu Händen \codeExample{\zHd}
+            \end{commandlist}
 
-    \section{Names}
-        \begin{commandlist}
-            \item[adimat] \justCodeExample{\adimat}
-            \item[ampl] \justCodeExample{\ampl}
-            \item[BibTeX] \justCodeExample{\BibTeX}
-            \item[BibLaTeX] \justCodeExample{\BibLaTeX}
-            \item[cg] \justCodeExample{\cg}
-            \item[cpp] \justCodeExample{\cpp}
-            \item[cppmat] \justCodeExample{\cppmat}
-            \item[dolfin] \justCodeExample{\dolfin}
-            \item[dolfinplot] \justCodeExample{\dolfinplot}
-            \item[dolfinadjoint] \justCodeExample{\dolfinadjoint}
-            \item[doxygen] \justCodeExample{\doxygen}
-            \item[femorph] \justCodeExample{\femorph}
-            \item[fenics] \justCodeExample{\fenics}
-            \item[ffc] \justCodeExample{\ffc}
-            \item[fmg] \justCodeExample{\fmg}
-            \item[fortran] \justCodeExample{\fortran}
-            \item[gitlab] \justCodeExample{\gitlab}
-            \item[gmres] \justCodeExample{\gmres}
-            \item[gmsh] \justCodeExample{\gmsh}
-            \item[ipopt] \justCodeExample{\ipopt}
-            \item[libsvm] \justCodeExample{\libsvm}
-            \item[liblinear] \justCodeExample{\liblinear}
-            \item[macmpec] \justCodeExample{\macmpec}
-            \item[manifoldsjl] \justCodeExample{\manifoldsjl}
-            \item[manopt] \justCodeExample{\manopt}
-            \item[manoptjl] \justCodeExample{\manoptjl}
-            \item[mathematica] \justCodeExample{\mathematica}
-            \item[matlab] \justCodeExample{\matlab}
-            \item[maple] \justCodeExample{\maple}
-            \item[maxima] \justCodeExample{\maxima}
-            \item[metis] \justCodeExample{\metis}
-            \item[minres] \justCodeExample{\minres}
-            \item[mshr] \justCodeExample{\mshr}
-            \item[mvirt] \justCodeExample{\mvirt}
-            \item[numpy] \justCodeExample{\numpy}
-            \item[paraview] \justCodeExample{\paraview}
-            \item[pdflatex] \justCodeExample{\pdflatex}
-            \item[perl] \justCodeExample{\perl}
-            \item[petsc] \justCodeExample{\petsc}
-            \item[pymat] \justCodeExample{\pymat}
-            \item[python] \justCodeExample{\python}
-            \item[scikit] \justCodeExample{\scikit}
-            \item[scikitlearn] \justCodeExample{\scikitlearn}
-            \item[scipy] \justCodeExample{\scipy}
-            \item[sphinx] \justCodeExample{\sphinx}
-            \item[subgmres] \justCodeExample{\subgmres}
-            \item[subminres] \justCodeExample{\subminres}
-            \item[superlu] \justCodeExample{\superlu}
-            \item[svmlight] \justCodeExample{\svmlight}
-            \item[tritetmesh] \justCodeExample{\tritetmesh}
-            \item[ufl] \justCodeExample{\ufl}
-            \item[uqlab] \justCodeExample{\uqlab}
-            \item[viper] \justCodeExample{\viper}
-            \item[xml] \justCodeExample{\xml}
-        \end{commandlist}
+        \section{Names}
+            \begin{commandlist}
+                \item[adimat] \justCodeExample{\adimat}
+                \item[ampl] \justCodeExample{\ampl}
+                \item[BibTeX] \justCodeExample{\BibTeX}
+                \item[BibLaTeX] \justCodeExample{\BibLaTeX}
+                \item[cg] \justCodeExample{\cg}
+                \item[cpp] \justCodeExample{\cpp}
+                \item[cppmat] \justCodeExample{\cppmat}
+                \item[dolfin] \justCodeExample{\dolfin}
+                \item[dolfinplot] \justCodeExample{\dolfinplot}
+                \item[dolfinadjoint] \justCodeExample{\dolfinadjoint}
+                \item[doxygen] \justCodeExample{\doxygen}
+                \item[femorph] \justCodeExample{\femorph}
+                \item[fenics] \justCodeExample{\fenics}
+                \item[ffc] \justCodeExample{\ffc}
+                \item[fmg] \justCodeExample{\fmg}
+                \item[fortran] \justCodeExample{\fortran}
+                \item[gitlab] \justCodeExample{\gitlab}
+                \item[gmres] \justCodeExample{\gmres}
+                \item[gmsh] \justCodeExample{\gmsh}
+                \item[ipopt] \justCodeExample{\ipopt}
+                \item[libsvm] \justCodeExample{\libsvm}
+                \item[liblinear] \justCodeExample{\liblinear}
+                \item[macmpec] \justCodeExample{\macmpec}
+                \item[manifoldsjl] \justCodeExample{\manifoldsjl}
+                \item[manopt] \justCodeExample{\manopt}
+                \item[manoptjl] \justCodeExample{\manoptjl}
+                \item[mathematica] \justCodeExample{\mathematica}
+                \item[matlab] \justCodeExample{\matlab}
+                \item[maple] \justCodeExample{\maple}
+                \item[maxima] \justCodeExample{\maxima}
+                \item[metis] \justCodeExample{\metis}
+                \item[minres] \justCodeExample{\minres}
+                \item[mshr] \justCodeExample{\mshr}
+                \item[mvirt] \justCodeExample{\mvirt}
+                \item[numpy] \justCodeExample{\numpy}
+                \item[paraview] \justCodeExample{\paraview}
+                \item[pdflatex] \justCodeExample{\pdflatex}
+                \item[perl] \justCodeExample{\perl}
+                \item[petsc] \justCodeExample{\petsc}
+                \item[pymat] \justCodeExample{\pymat}
+                \item[python] \justCodeExample{\python}
+                \item[scikit] \justCodeExample{\scikit}
+                \item[scikitlearn] \justCodeExample{\scikitlearn}
+                \item[scipy] \justCodeExample{\scipy}
+                \item[sphinx] \justCodeExample{\sphinx}
+                \item[subgmres] \justCodeExample{\subgmres}
+                \item[subminres] \justCodeExample{\subminres}
+                \item[superlu] \justCodeExample{\superlu}
+                \item[svmlight] \justCodeExample{\svmlight}
+                \item[tritetmesh] \justCodeExample{\tritetmesh}
+                \item[ufl] \justCodeExample{\ufl}
+                \item[uqlab] \justCodeExample{\uqlab}
+                \item[viper] \justCodeExample{\viper}
+                \item[xml] \justCodeExample{\xml}
+            \end{commandlist}
 
     \section{Semantic Commands}
-    Build upon Syntax from \cref{sec:syntax} this part provides semantical mathematical commands.
+        \label{sec:semantic}
+        Build upon Syntax from \cref{sec:syntax} this part provides semantical mathematical commands.
 
     \begin{commandlist}
         \item[abs] absolute value.
@@ -634,7 +648,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 \end{commandlist}
 
 
-\subsection{Optimization}\label{subsec:optimization}
+\subsection{Optimization: \texorpdfstring{\file{numapde-optimization.sty}}{numapde-optimization.sty}}\label{subsec:optimization}
 
 The semantic file \file{mathsemantics-optimization.sty} collects definitions and notations related to optimization.
 \begin{commandlist}

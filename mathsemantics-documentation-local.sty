@@ -11,7 +11,9 @@
 \RequirePackage{scrlayer-scrpage}
 \RequirePackage{stmaryrd}
 \RequirePackage{enumitem}
+\RequirePackage{ccicons}
 \RequirePackage{minted}
+\usemintedstyle{vs}
 % load fonts
 \RequirePackage{microtype}
 \RequirePackage[proportional]{libertine}
@@ -57,6 +59,7 @@
 \rohead[]{mathsemantics.sty}
 \lehead[]{R. Bergmann}
 \refoot[]{\ISOToday}
+\cofoot[]{\ccbyncsa}
 \ofoot[page~\thepage~of~\pageref*{LastPage}]{page~\thepage~of~\pageref*{LastPage}}
 \useosf
 
@@ -79,7 +82,7 @@
 
 % Define a command which displays code and renders its results in math mode
 \NewDocumentCommand\mathCodeExample{v}{%
-  \faIcon{code}\hspace{.125cm}%
+  \faIcon{code}$_{\hspace{-.5ex}\text{\color{TolMutedGreen}\faIcon{dollar-sign}}}$\hspace{.125cm}%
   \mintinline{LaTeX}{#1}
   \hspace{.5cm}
   \faEye[regular]\hspace{.125cm}\scantokens{$\displaystyle #1\noexpand$}%
