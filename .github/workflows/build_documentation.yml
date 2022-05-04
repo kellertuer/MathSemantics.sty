@@ -29,3 +29,10 @@ jobs:
         with:
           name: MathSemantics.sty Documentation
           path: mathsemantics-documentation.pdf
+      - name: Upload pdf to gh-pages
+        uses: test-room-7/action-update-file@v1
+        with:
+          file-path: mathsemantics-documentation.pdf
+          branch: gh-pages
+          commit-msg: Update documentation
+          github-token: ${{ secrets.GITHUB_TOKEN }}
