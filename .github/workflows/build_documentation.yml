@@ -25,10 +25,10 @@ jobs:
         with:
           root_file: mathsemantics-documentation.tex
           args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode -latexoption=-shell-escape
-      - uses: actions/upload-artifact@v2
-        with:
-          name: MathSemantics.sty Documentation
-          path: mathsemantics-documentation.pdf
+#      - uses: actions/upload-artifact@v2
+#        with:
+#          name: MathSemantics.sty Documentation
+#          path: mathsemantics-documentation.pdf
       - name: Upload pdf to gh-pages
         uses: test-room-7/action-update-file@v1
         with:
