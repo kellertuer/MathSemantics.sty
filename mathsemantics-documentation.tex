@@ -7,14 +7,19 @@
     \maketitle
     \tableofcontents
     \section{Introduction}
-    This package aims to provide semantic commands for ease of use in mathematics.
+    This package aims to provide semantic commands for ease of use in mathematics
+    to see better \emph{what} you semantically mean which should be distinct/split
+    from \emph{how} it is realised in \LaTeX.
 
-    It is a spin-off and developed in the suite of packages from the former numapde-group in Chemnitz,
+    The package is a spin-off and developed in the suite of packages from the former numapde-group in Chemnitz,
     see the original repository at \url{https://gitlab.hrz.tu-chemnitz.de/numapde-public/numapde-latex}.
 
     Throughout this documentation most commands are directly illustrated by examples, which are
     both displayed as code (\faIcon{code} or \faIcon{code}$_{\hspace{-.5ex}\text{\color{TolMutedGreen}\faIcon{dollar-sign}}}$ for math examples) and its rendered result in \LaTeX\ (\faEye[regular]).
-    Two examples are \mathCodeExample{\R} and \codeExample{\eg}
+    Two examples are\\
+    \mathCodeExample{\bbR}\\
+    and\\
+    \codeExample{\eg}
 
     The aim is to first ease the use of some often used letters and low-level formats like
     bold face letters \mathCodeExample{\bbR}, but also to provide high level commands that
@@ -25,7 +30,7 @@
     The first main part on general semantic commands is \cref{sec:semantic}.
 
     While all these are loaded by default. The next part, \cref{sec:semantics-by-topic},
-    introduces semantical commands for specific topics.
+    introduces semantic commands for specific topics.
     These are given in separate sub-packages and can be loaded if you work in this area and want to use the commands.
 
     The package should be loaded late, since it might overwrite a few commands,

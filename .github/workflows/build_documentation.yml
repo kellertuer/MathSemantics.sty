@@ -1,0 +1,31 @@
+name: Build MathSemantics documentation
+on:
+  push:
+    branches: [master]
+jobs:
+  build_documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Set up Python & Minted
+        uses: actions/setup-python@v3
+        with:
+         python-version: '3.9'
+         cache: 'pip'
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v3
+        with:
+          path: ".github/requirements.txt"
+          update-pip: "false"
+          update-setuptools: "false"
+          update-wheel: "false"
+      - name: Compile LaTeX document
+        uses: dante-ev/latex-action@master
+        with:
+          root_file: mathsemantics-documentation.tex
+          args: -xelatex -latexoption=-file-line-error -latexoption=-interaction=nonstopmode -latexoption=-shell-escape
+      - uses: actions/upload-artifact@v2
+        with:
+          name: MathSemantics.sty Documentation
+          path: mathsemantics-documentation.pdf
