@@ -1,6 +1,6 @@
-# Mathemantics.sty
+# MathSemantics.sty
 
-This LaTeX package `mathemantics.sty` provides both syntactic and semantic helpers to typeset math in LaTeX. The syntactic layer eases typesetting of formular in general, while the semantic layer provides commands like `\inner{x}{y}` to unify
+This LaTeX package `mathsemantics.sty` provides both syntactic and semantic helpers to typeset math in LaTeX. The syntactic layer eases typesetting of formular in general, while the semantic layer provides commands like `\inner{x}{y}` to unify
  typesetting of inner products. These not only unify typesetting of math formulae but also allow to easily adapt Notation if a user prefers to.
 The semantic layer is split into topics.
 
@@ -30,4 +30,4 @@ and
 \norm[Big]{x}
 ```
 
-For a comprehensive overview over all commands, see the `mathemantics-documentation.pdf`.
+For a comprehensive overview over all commands, see the `mathsemantics-documentation.pdf`.

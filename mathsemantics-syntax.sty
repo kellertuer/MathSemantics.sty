@@ -1,11 +1,11 @@
-\ProvidesPackage{mathemantics-syntax}
-\provideboolean{mathemantics@syntax@shortbb}
-\setboolean{mathemantics@syntax@shortbb}{false}% default: false
+\ProvidesPackage{mathsemantics-syntax}
+\provideboolean{mathsemantics@syntax@shortbb}
+\setboolean{mathsemantics@syntax@shortbb}{false}% default: false
 \DeclareOption{shortbb}{%
-    \setboolean{mathemantics@syntax@shortbb}{true}% Some Code
+    \setboolean{mathsemantics@syntax@shortbb}{true}% Some Code
 }
 \ProcessOptions\relax
-\RequirePackage{mathemantics-commons}
+\RequirePackage{mathsemantics-commons}
 
 % Define commands for bold upper-case letters in math mode
 \newcommand{\bA}{{\boldsymbol{A}}}
@@ -358,7 +358,7 @@
 \newcommand{\bbY}{\mathbb{Y}}
 \newcommand{\bbZ}{\mathbb{Z}}
 
-\ifthenelse{\boolean{mathemantics@syntax@shortbb}}{
+\ifthenelse{\boolean{mathsemantics@syntax@shortbb}}{
 	\providecommand{\C}{\bbC}%
 	\providecommand{\K}{\bbK}%
 	\providecommand{\N}{\bbN}%

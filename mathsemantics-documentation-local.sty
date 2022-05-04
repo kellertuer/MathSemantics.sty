@@ -1,5 +1,5 @@
 % commands used in the docs.
-\ProvidesPackage{mathemantics-documentation-local}
+\ProvidesPackage{mathsemantics-documentation-local}
 \RequirePackage{fontawesome5}
 % Load the metalogo package (which provides the \XeTeX command)
 \RequirePackage{metalogo}
@@ -21,7 +21,7 @@
 \RequirePackage{hyperref}
 \RequirePackage[nameinlink,capitalize,noabbrev]{cleveref}
 % Load Package - after minted
-\RequirePackage[shortbb]{mathemantics}
+\RequirePackage[shortbb]{mathsemantics}
 
 \definecolor{TolMutedBlue}{HTML}{332288}
 \definecolor{TolMutedGreen}{HTML}{117733}
@@ -54,7 +54,7 @@
 \KOMAoptions{footsepline=true}
 \KOMAoptions{plainfootsepline=true}
 
-\rohead[]{Mathemantics.sty}
+\rohead[]{mathsemantics.sty}
 \lehead[]{R. Bergmann}
 \refoot[]{\ISOToday}
 \ofoot[page~\thepage~of~\pageref*{LastPage}]{page~\thepage~of~\pageref*{LastPage}}
@@ -85,7 +85,7 @@
   \faEye[regular]\hspace{.125cm}\scantokens{$\displaystyle #1\noexpand$}%
 }
 
-\newcommand{\mathemanticsWarning}{{ \color{TolVibrantOrange}\faIcon{exclamation-triangle}\ }}
+\newcommand{\mathsemanticsWarning}{{ \color{TolVibrantOrange}\faIcon{exclamation-triangle}\ }}
 \newcommand{\file}[1]{\nolinkurl{#1}}
 
 % Define a command which displays colors

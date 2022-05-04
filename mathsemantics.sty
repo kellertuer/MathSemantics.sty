@@ -1,0 +1,19 @@
+%
+% mathsemantics.sty
+%
+\ProvidesPackage{mathsemantics}
+\DeclareOption{shortbb}{%
+    \PassOptionsToPackage{shortbb}{mathsemantics-syntax}
+}
+\ProcessOptions\relax
+
+\RequirePackage{mathsemantics-commons}
+
+\RequirePackage{mathsemantics-syntax}
+\RequirePackage{mathsemantics-abbreviations}
+\RequirePackage{mathsemantics-names}
+
+\RequirePackage{mathsemantics-semantic}
+
+\RequirePackage{mathsemantics-manifolds}
+\RequirePackage{mathsemantics-optimization}
