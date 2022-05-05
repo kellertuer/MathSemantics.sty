@@ -173,7 +173,7 @@
         \subsection{English}
         \begin{commandlist}
             \item[aa] almost all \codeExample{\aa}
-            \item[ale] almost everwhere \codeExample{\ale}
+            \item[ale] almost everywhere \codeExample{\ale}
             \item[eg] exempli gratia (for example) \codeExample{\eg}
             \item[etc] et cetera (and so on) \codeExample{\etc}
             \item[ie] id est (id est) \codeExample{\ie}
@@ -276,12 +276,12 @@
 
     \section{Semantic Commands}
         \label{sec:semantic}
-        Build upon Syntax from \cref{sec:syntax} this part provides semantical mathematical commands.
+        Build upon Syntax from \cref{sec:syntax} this part provides semantic mathematical commands.
 
     \begin{commandlist}
         \item[abs] absolute value.
             Its syntax is \codeCommand{\abs[#1]{#2}}.
-            The first (optional) argument is used to scale the deliminters enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The first (optional) argument is used to scale the delimiters enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
             The second argument denotes the argument.
             \par\mathCodeExample{\abs{a}}
             \par\mathCodeExample{\abs[Big]{\dfrac{1}{2}}}
@@ -327,7 +327,7 @@
             \par\mathCodeExample{\distOp}
         \item[dist] distance from a point to a set.
             Its syntax is \codeCommand{\dist[#1]{#2}{#3}} or \codeCommand{\dist[#1]{#2}}.
-            The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The first (optional) argument is used to scale the parentheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
             The second argument denotes the set.
             The third argument denotes the point; it can be omitted.
             The command \codeCommand{\distOp} is used to typeset the operator.
@@ -366,7 +366,7 @@
         \item[Graph] graph of a function \mathCodeExample{\Graph}
         \item[id] identity operator \mathCodeExample{\id}
         \item[image] image of a function \mathCodeExample{\image}
-        \item[inj] injedctivity (radius) \mathCodeExample{\inj}
+        \item[inj] injectivity (radius) \mathCodeExample{\inj}
         \item[inner] inner product.
             Its syntax is \codeCommand{\inner[#1]{#2}{#3}}.
             The first (optional) argument is used to scale the parentheses enclosing the arguments to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
@@ -395,7 +395,7 @@
             \par\mathCodeExample{\projOp}
         \item[proj] projection onto a set.
             Its syntax is \codeCommand{\proj[#1]{#2}(#3)} or \codeCommand{\proj[#1]{#2}}.
-            The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The first (optional) argument is used to scale the parentheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
             The second argument denotes the set and can also be left out.
             The third argument denotes the point; it can be omitted.
             The command \codeCommand{\projOp} is used to typeset the operator.
@@ -409,7 +409,7 @@
             \par\mathCodeExample{\proxOp}
         \item[prox] the proximal operator of a function.
             Its syntax is \codeCommand{\prox[#1]{#2}(#3)} or \codeCommand{\prox[#1]{#2}}.
-            The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The first (optional) argument is used to scale the parentheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
             The second argument denotes the set.
             The third argument denotes the point; it can be omitted.
             The command \codeCommand{\proxOp} is used to typeset the operator.
@@ -425,12 +425,12 @@
             The second argument denotes the argument to be restricted/evaluated.
             The third argument denotes the restriction set/evaluation point.
             \par\mathCodeExample{\restr[auto]{\frac{\d}{\d t}(f \circ \gamma)(t)}{t=0}}
-        \item[ri] relative inerior \mathCodeExample{\ri}
+        \item[ri] relative interior \mathCodeExample{\ri}
 
 
       \item[setDef] define a set, where \codeCommand{\setMid} serves as the center divider.
             Its syntax is \codeCommand{\setDef[#1]{#2}{#3}}.
-            The first (optional) argument is used to scale the parantheses enclosing the argument and the center divider to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+            The first (optional) argument is used to scale the parentheses enclosing the argument and the center divider to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
             The second argument denotes the left part of the definition, naming the potential elements of the set being defined.
             The third argument denotes the condition to include the elements in the set.
             \par\mathCodeExample{\setDef{x\in\bbR}{x>5}}\\
@@ -454,14 +454,14 @@
     \section{Additional Semantics by Topic}\label{sec:semantics-by-topic}
 
 While semantic commands might be suitable for all mathematical topics, the following subsections collect commands which are most useful in one particular mathematical area and hence might clutter the general semantic file.
-Any semantic topic files should always build on \file{numapde-semantic.sty}.
+Any semantic topic files should always build on \file{mathsemantics-semantic.sty}.
 
 
-\subsection{Manifolds: \texorpdfstring{\file{numapde-manifolds.sty}}{numapde-manifolds.sty}}\label{subsec:manifolds}
+\subsection{Manifolds: \texorpdfstring{\file{mathsemantics-manifolds.sty}}{mathsemantics-manifolds.sty}}\label{subsec:manifolds}
 
-The semantic file \file{numapde-manifolds.sty} collects definitions and notations for Riemannian manifolds.
+The semantic file \file{mathsemantics-manifolds.sty} collects definitions and notations for Riemannian manifolds.
 \begin{commandlist}
-	\item[bitangentSpace] the bitangent space.
+	\item[bitangentSpace] the bi tangent space.
 		Its syntax is \codeCommand{\bitangent{#1}[#2]}.
 		The first argument denotes the base point.
 		The second (optional) argument denotes the manifold, which defaults to $\cM$.
@@ -505,7 +505,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		Its syntax is \codeCommand{\geodesic|#1|<#2>[#3]{#4}{#5}(#6)}.% chktex 6
 		The first argument can be used to use a different symbol (locally) for the geodesic
 		The second (optional) argument is used to modify the style of the geodesic (\codeCommand{s}ymbol, \codeCommand{l}ong, \codeCommand{a}rc or \codeCommand{p}lain, where the last is the default)
-		The third (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The third (optional) argument is used to scale the parentheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
 		It is ignored when the sixth argument is not given.
 		The fourth argument denotes the initial point (at $t = 0$).
 		The fifth argument denotes either the final point (at $t = 1$) for types~\codeCommand{l} and \codeCommand{a}, or the initial tangent vector for type~\codeCommand{p}.
@@ -517,7 +517,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		% 	\item the third and fourth in usual curly braces are also optional and refer to either start and end point or start point and tangent,
 		% 	\item the argument of the geodesic is given in \lstinline!()! as fifth argument
 		% \end{itemize}
-		% Note that omiting the third and fourth might lead to undesired print, especially for \lstinline!l!ong.
+		% Note that omitting the third and fourth might lead to undesired print, especially for \lstinline!l!ong.
 		\par\mathCodeExample{\geodesic<s>}
 		\par\mathCodeExample{\geodesic<s>(t)} %chktex 36
 		\par\mathCodeExample{\geodesic<l>{p}{q}}
@@ -550,7 +550,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		\par\mathCodeExample{\logOp}
 	\item[parallelTransport] the parallel transport.\\
 		Its syntax is \codeCommand{\parallelTransport[#1]{#2}{#3}(#4){5}}.
-		The first (optional) argument is used to scale the parantheses enclosing the argument \#4.\cref{footnote:amsmath_sizes}
+		The first (optional) argument is used to scale the parentheses enclosing the argument \#4.\cref{footnote:amsmath_sizes}
 		The second argument is the start point of parallel transport on a manifold.
 		The third argument is the end point of parallel transport on a manifold.
 		The fourth (optional) argument is the tangent vector that is transported.
@@ -588,7 +588,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		\par\mathCodeExample{\retractionSymbol}
 	\item[riemannian] the Riemannian metric (family of inner products on the tangent spaces).
 		Its syntax is \codeCommand{\riemannian[#1]{#2}{#3}[#4]}.
-		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The first (optional) argument is used to scale the parentheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
 		The second argument denotes the first factor.
 		The third argument denotes the second factor.
 		The fourth (optional) argument denotes the base point of the tangent space.
@@ -597,7 +597,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		\par\mathCodeExample{\riemannian[Big]{\dfrac{1}{2}X_1}{X_2}[p]}
 	\item[riemanniannorm] the norm induced by the Riemannian metric.\\
 		Its syntax is \codeCommand{\riemanniannorm[#1]{#2}[#3]}.
-		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The first (optional) argument is used to scale the parentheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
 		The second argument denotes the argument.
 		The third (optional) argument denotes the base point of the tangent space.
 		\par\mathCodeExample{\riemanniannorm{X}}
@@ -643,7 +643,7 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 		\par\mathCodeExample{\tensorSpaceSymbol}
 	\item[vectorTransport] a vector transport.\\
 		Its syntax is \codeCommand{\vectorTransport[#1]{#2}{#3}(#4)[#5]}.
-		The first (optional) argument is used to scale the parantheses enclosing the argument \#4.\cref{footnote:amsmath_sizes}
+		The first (optional) argument is used to scale the parentheses enclosing the argument \#4.\cref{footnote:amsmath_sizes}
 		The second argument is the start point of vector transport on a manifold.
 		The third argument is the end point of vector transport on a manifold.
 		The fourth (optional) argument is the tangent vector that is transported.
@@ -665,13 +665,13 @@ The semantic file \file{numapde-manifolds.sty} collects definitions and notation
 \end{commandlist}
 
 
-\subsection{Optimization: \texorpdfstring{\file{numapde-optimization.sty}}{numapde-optimization.sty}}\label{subsec:optimization}
+\subsection{Optimization: \texorpdfstring{\file{mathsemantics-optimization.sty}}{mathsemantics-optimization.sty}}\label{subsec:optimization}
 
 The semantic file \file{mathsemantics-optimization.sty} collects definitions and notations related to optimization.
 \begin{commandlist}
 	\item[linearizingcone] the linearizing cone.
 		Its syntax is \codeCommand{\linearizingcone[#1]{#2}{#3}}.
-		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The first (optional) argument is used to scale the parentheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
 		The second argument denotes the set.
 		The third argument denotes the base point.
 		\par\mathCodeExample{\linearizingcone{A}{x}}
@@ -680,7 +680,7 @@ The semantic file \file{mathsemantics-optimization.sty} collects definitions and
 
 	\item[normalcone] the normal cone.
 		Its syntax is \codeCommand{\normalcone[#1]{#2}{#3}}.
-		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The first (optional) argument is used to scale the parentheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
 		The second argument denotes the set.
 		The third argument denotes the base point.
 		\par\mathCodeExample{\normalcone{A}{x}}
@@ -691,7 +691,7 @@ The semantic file \file{mathsemantics-optimization.sty} collects definitions and
 
 	\item[radialcone] the radial cone.
 		Its syntax is \codeCommand{\radialcone[#1]{#2}{#3}}.
-		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The first (optional) argument is used to scale the parentheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
 		The second argument denotes the set.
 		The third argument denotes the base point.
 		\par\mathCodeExample{\radialcone{A}{x}}
@@ -700,7 +700,7 @@ The semantic file \file{mathsemantics-optimization.sty} collects definitions and
 
 	\item[tangentcone] the tangent cone.
 		Its syntax is \codeCommand{\tangentcone[#1]{#2}{#3}}.
-		The first (optional) argument is used to scale the parantheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
+		The first (optional) argument is used to scale the parentheses enclosing the argument to the standard amsmath sizes.\cref{footnote:amsmath_sizes}
 		The second argument denotes the set.
 		The third argument denotes the base point.
 		\par\mathCodeExample{\tangentcone{A}{x}}
