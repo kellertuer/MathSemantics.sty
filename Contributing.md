@@ -1,11 +1,11 @@
-# Contributing to `MathSemantics.sty.jl`
+# Contributing to `MathSemantics.sty`
 
 First, thanks for taking the time to contribute.
 Any contribution is appreciated and welcome.
 
 The following is a set of guidelines to [`MathSemantics.sty`](https://github.com/kellertuer/MathSemantics.sty).
 
-- [Contributing to `MathSemantics.sty.jl`](#contributing-to-mathsemanticsstyjl)
+- [Contributing to `MathSemantics.sty`](#contributing-to-mathsemanticssty)
   - [I just have a question](#i-just-have-a-question)
   - [How can I file an issue?](#how-can-i-file-an-issue)
   - [How can I contribute?](#how-can-i-contribute)
