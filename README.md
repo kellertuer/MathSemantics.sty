@@ -1,6 +1,7 @@
 # MathSemantics.sty
 
 [![documentation](https://badgen.net/badge/documentation/pdf/green)](https://ronnybergmann.net/MathSemantics.sty/mathsemantics-documentation.pdf)
+[![CTAN](https://img.shields.io/ctan/v/mathsemantics)](https://ctan.org/pkg/mathsemantics)
 ![LaTeX](https://badgen.net/badge/language/LaTeX/blue)
 [![GitHub license](https://badgen.net/github/license/kellertuer/MathSemantics.sty)](https://github.com/kellertuer/MathSemantics.sty/blob/master/LICENSE) 
 
