@@ -3,51 +3,56 @@
 % Resolve the dependencies of this package
 \RequirePackage{mathsemantics-commons}
 
+\NewDocumentCommand{\abrv}{ >{\SplitList{}} m }{%
+  \ProcessList{#1}{\abrvf}%
+  \xspace%
+}
+\NewDocumentCommand{\abrvf}{m}{#1.\,}
 % Define some English abbreviations
-\let\aa\undefined \newcommand{\aa}{a.a.\xspace}
-\newcommand{\ale}{a.e.\xspace}
-\let\cf\undefined \newcommand{\cf}{cf.\xspace}
-\newcommand{\eg}{e.\,g.\xspace}
-\newcommand{\Eg}{E.\,g.\xspace}
-\let\ie\undefined \newcommand{\ie}{i.\,e.\xspace}
-\newcommand{\Ie}{I.\,e.\xspace}
-\newcommand{\iid}{i.\,i.\,d.\xspace}
-\let\st\undefined \newcommand{\st}{s.\,t.\xspace}  % WileyNJD-v2.cls (loads soul.sty)
-\newcommand{\wolog}{w.l.o.g.\xspace} % \wlog is a LaTeX core command which writes to the .log file
-\newcommand{\wrt}{w.r.t.\xspace}
+\newcommand{\ala}{\abrv{aa}}
+\newcommand{\ale}{\abrv{ae}}
+\providecommand*{\cf}{cf.\xspace}
+\newcommand{\eg}{\abrv{eg}}
+\newcommand{\Eg}{\abrv{Eg}}
+\providecommand*{\ie}{\abrv{ie}}
+\newcommand{\Ie}{\abrv{Ie}}
+\newcommand{\iid}{\abrv{iid}}
+\newcommand{\suth}{\abrv{st}}
+\newcommand{\wolog}{\abrv{wlog}} % \wlog is a LaTeX core command which writes to the .log file
+\newcommand{\wrt}{\abrv{wrt}}
+\newcommand{\spd}{\abrv{spd}}
 
 % Define some German abbreviations
 \newcommand{\bspw}{bspw.\xspace}
 \newcommand{\bzgl}{bzgl.\xspace}
 \newcommand{\bzw}{bzw.\xspace}
-\newcommand{\dah}{d.\,h.\xspace}
-\newcommand{\Dah}{D.\,h.\xspace}
+\newcommand{\dah}{\abrv{dh}}
+\newcommand{\Dah}{\abrv{Dh}}
 \newcommand{\etc}{etc.\xspace}
 \newcommand{\evtl}{evtl.\xspace}
 \newcommand{\Evtl}{Evtl.\xspace}
-\newcommand{\fue}{f.\,ü.\xspace}
-\newcommand{\fs}{f.\,s.\xspace}
-\newcommand{\iA}{i.\,A.\xspace}
-\newcommand{\IA}{I.\,A.\xspace}
-\newcommand{\idR}{i.\,d.\,R.\xspace}
-\newcommand{\IdR}{I.\,d.\,R.\xspace}
-\newcommand{\iW}{i.\,W.\xspace}
-\newcommand{\IW}{I.\,W.\xspace}
-\newcommand{\mE}{m.\,E.\xspace}
-\newcommand{\oBdA}{o.\,B.\,d.\,A.\xspace}
-\newcommand{\OBdA}{O.\,B.\,d.\,A.\xspace}
-\let\og\undefined \newcommand{\og}{o.\,g.\xspace}  % cedram.cls
-\newcommand{\oae}{o.\,ä.\xspace}
-\newcommand{\pa}{p.\,a.\xspace}
-\newcommand{\spd}{s.\,p.\,d.\xspace}
-\let\so\undefined \newcommand{\so}{s.\,t.\xspace}  % WileyNJD-v2.cls (loads soul.sty)
-\newcommand{\ua}{u.\,a.\xspace}
-\newcommand{\ug}{u.\,g.\xspace}
+\newcommand{\fue}{\abrv{f{\"u}}}
+\newcommand{\fs}{\abrv{fs}}
+\newcommand{\iA}{\abrv{iA}}
+\newcommand{\IA}{\abrv{IA}}
+\newcommand{\idR}{\abrv{idR}}
+\newcommand{\IdR}{\abrv{IdR}}
+\newcommand{\iW}{\abrv{iW}}
+\newcommand{\IW}{\abrv{IW}}
+\newcommand{\mE}{\abrv{mE}}
+\newcommand{\oBdA}{\abrv{oBdA}}
+\newcommand{\OBdA}{\abrv{ObdA}}
+\newcommand{\oge}{\abrv{og}}  % cedram.cls
+\newcommand{\oae}{\abrv{o{\"a}}}
+\newcommand{\pa}{\abrv{pa}}
+\newcommand{\sio}{\abrv{so}}  % WileyNJD-v2.cls (loads soul.sty)
+\newcommand{\ua}{\abrv{ua}}
+\newcommand{\ug}{\abrv{ug}}
 \newcommand{\usw}{usw.\xspace}
-\newcommand{\Ua}{U.\,a.\xspace}
-\newcommand{\uU}{u.\,U.\xspace}
-\newcommand{\UnU}{U.\,U.\xspace}
+\newcommand{\Ua}{\abrv{Ua}}
+\newcommand{\uU}{\abrv{uU}}
+\newcommand{\UnU}{\abrv{UU}}
 \newcommand{\vgl}{vgl.\xspace}
-\newcommand{\zB}{z.\,B.\xspace}
-\newcommand{\ZB}{Z.\,B.\xspace}
-\newcommand{\zHd}{z.\,Hd.\xspace}
+\newcommand{\zB}{\abrv{zB}}
+\newcommand{\ZB}{\abrv{ZB}}
+\newcommand{\zHd}{\abrv{z{Hd}}}
