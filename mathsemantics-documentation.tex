@@ -1,6 +1,6 @@
 \documentclass[english,a4paper,DIV=12,parskip=full,oneside]{scrartcl}
 \usepackage{mathsemantics-documentation-local}
-\date{\today, v\,1.0.0}
+\date{\today, v\,1.0.1}
 \author{%
     Ronny Bergmann\\[.25\baselineskip]%
     \small\href{mailto:ronny.bergmann@ntnu.no}{ronny.bergmann@ntnu.no}\\[.125\baselineskip]
@@ -169,17 +169,26 @@
     \end{commandlist}
 
     \section{Abbreviations}
+        Abbreviations and their spacing might be diifcult to genannt
+        \begin{commandlist}
+            \item[abrv] write the letters provided as an abbreviation
+            \par\codeExample{\abrv{ie}}
+            \par\codeExample{\abrv{wlog}} % chktex 1
+        \end{commandlist}
+        And we introduce a few of them specifically also a few that are not following this scheme.
         \label{sec:abbreviations}
         \subsection{English}
         \begin{commandlist}
-            \item[aa] almost all \codeExample{\aa}
+            \item[ala] almost all \codeExample{\ala}
             \item[ale] almost everywhere \codeExample{\ale}
+            \item[cf] conferatur (compare (to)) \codeExample{\cf}
             \item[eg] exempli gratia (for example) \codeExample{\eg}
+            \item[Eg] Exempli gratia (for example, at beginning of a sentence) \codeExample{\Eg}
             \item[etc] et cetera (and so on) \codeExample{\etc}
             \item[ie] id est (id est) \codeExample{\ie}
             \item[iid] independent and identically distributed \codeExample{\iid}
             \item[spd] symmetric positive definite \codeExample{\spd}
-            \item[st] such that or subject to \codeExample{\st}
+            \item[suth] such that or subject to \codeExample{\suth}
             \item[wrt] with respect to \codeExample{\wrt}
         \end{commandlist}
         \subsection{German}
@@ -201,9 +210,9 @@
                 \item[mE] meines Erachtens \codeExample{\mE}
                 \item[oBdA] ohne Beschränkung der Allgemeinheit \codeExample{\oBdA}
                 \item[OBdA] ohne Beschränkung der Allgemeinheit (beginning of phrase) \par\codeExample{\OBdA}
-                \item[og] oben genannt \codeExample{\og}
+                \item[oge] oben genannt \codeExample{\oge}
                 \item[oae] oder ähnliche \codeExample{\oae}
-                \item[so] siehe oben \codeExample{\so}
+                \item[sio] siehe oben \codeExample{\sio}
                 \item[ua] unter anderem \codeExample{\ua}
                 \item[Ua] Unter anderem (beginning of phrase) \codeExample{\Ua}
                 \item[ug] unten genannt \codeExample{\ug}
